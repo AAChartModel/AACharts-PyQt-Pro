@@ -3,8 +3,10 @@ from typing import List
 from aacharts.aaenum.AAEnum import AAChartType, AAChartStackingType
 from aacharts.aaoptionsmodel.AADataLabels import AADataLabels
 from aacharts.aaoptionsmodel.AASeries import AASeries
+from aacharts.aaoptionsmodelpro.AAPackedbubble import AAPackedbubble
+from aacharts.aaoptionsmodelpro.AATreemap import AATreemap
 
- 
+
 class AAColumn:
      name: str
      data: List
@@ -327,6 +329,8 @@ class AAPlotOptions:
      bubble: AABubble
      columnrange: AAColumnrange
      arearange: AAArearange
+     packedbubble: AAPackedbubble
+     treemap: AATreemap
      series: AASeries 
          
      def columnSet(self, prop: AAColumn):
@@ -368,6 +372,14 @@ class AAPlotOptions:
      def arearangeSet(self, prop: AAArearange):
         self.arearange = prop
         return self
+
+     def packedbubbleSet(self, prop: AAPackedbubble):
+         self.packedbubble = prop
+         return self
+
+     def treemapSet(self, prop: AATreemap):
+         self.treemap = prop
+         return self
      
      def seriesSet(self, prop: AASeries):
         self.series = prop
