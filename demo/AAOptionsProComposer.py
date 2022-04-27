@@ -531,22 +531,22 @@ class AAOptionsProComposer:
     .colorAxisSet(AAColorAxis()
                   .dataClassesSet([
                     AADataClassesElement()
-                        .fromSet(0)
+                        ._fromSet(0)
                         .toSet(1000000)
                         .colorSet("#F9EDB3")
                         .nameSet("< 1M"),
                     AADataClassesElement()
-                        .fromSet(1000000)
+                        ._fromSet(1000000)
                         .toSet(5000000)
                         .colorSet("#FFC428")
                         .nameSet("1M - 5M"),
                     AADataClassesElement()
-                        .fromSet(5000000)
+                        ._fromSet(5000000)
                         .toSet(20000000)
                         .colorSet("#F9EDB3")
                         .nameSet("5M - 20M"),
                     AADataClassesElement()
-                        .fromSet(20000000)
+                        ._fromSet(20000000)
                         .colorSet("#FF2371")
                         .nameSet("> 20M"),
                   ]))
