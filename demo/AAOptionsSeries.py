@@ -1,10 +1,10 @@
 class AAOptionsSeries:
     @staticmethod
-    def variablepieData():
+    def packedbubbleSeries():
         return AAOptionsSeries.getJsonDataWithJsonFileName("variablepieData")
 
     @staticmethod
-    def variwideData():
+    def streamgraphSeries():
         return AAOptionsSeries.getJsonDataWithJsonFileName("variwideData")
 
     @staticmethod
