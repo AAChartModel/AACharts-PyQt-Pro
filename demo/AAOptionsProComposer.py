@@ -319,7 +319,7 @@ class AAOptionsProComposer:
                                                     #            .operatorSet(">")
                                                     #            .valueSet(250))
                                                     )))
-    .seriesSet(AAOptionsSeries.packedbubbleSeries))
+    .seriesSet(AAOptionsSeries.packedbubbleSeries()))
 
 
 # https:#www.highcharts.com.cn/demo/highcharts/packed-bubble-split
@@ -354,7 +354,7 @@ class AAOptionsProComposer:
                                                     #            .operatorSet(">")
                                                     #            .valueSet(250))
                                                     )))
-    .seriesSet(AAOptionsSeries.packedbubbleSeries))
+    .seriesSet(AAOptionsSeries.packedbubbleSeries()))
 
 
 
@@ -489,7 +489,7 @@ class AAOptionsProComposer:
                 .enabledSet(True))
     .legendSet(AALegend()
                .enabledSet(False))
-    .seriesSet(AAOptionsSeries.streamgraphSeries))
+    .seriesSet(AAOptionsSeries.streamgraphSeries()))
 
 
   @staticmethod
@@ -1029,6 +1029,6 @@ class AAOptionsProComposer:
                         .colorSet(AAColor.black)
                         .textOutlineSet("none")
                         .fontWeightSet(AAChartFontWeightType.regular)))))
-        .seriesSet(AAOptionsSeries.packedbubbleSeries))
+        .seriesSet(AAOptionsSeries.packedbubbleSeries()))
 
 
