@@ -13,6 +13,7 @@ from aacharts.aaoptionsmodel.AAXAxis import AAXAxis
 from aacharts.aaoptionsmodel.AAYAxis import AAYAxis
 from aacharts.aaoptionsmodel.AACredits import AACredits
 from aacharts.aaoptionsmodel.AALang import AALang
+from aacharts.aaoptionsmodelpro.AAColorAxis import AAColorAxis
 
 
 class AAOptions:
@@ -32,6 +33,9 @@ class AAOptions:
     credits: AACredits
     defaultOptions: AALang
     touchEventEnabled: bool
+
+    colorAxis: AAColorAxis
+
     
     def chartSet(self, prop: AAChart):
         self.chart = prop
@@ -110,6 +114,10 @@ class AAOptions:
     
     def touchEventEnabledSet(self, prop: bool):
         self.touchEventEnabled = prop
+        return self
+
+    def colorAxisSet(self, prop: bool):
+        self.colorAxis = prop
         return self
    
 
