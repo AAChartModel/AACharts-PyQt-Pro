@@ -58,7 +58,7 @@ class AAOptionsProComposer:
         AASeriesElement()
         .typeSet(AAChartType.sankey)
         .keysSet(["from", "to", "weight"])
-        .dataSet(AAOptionsData.sankeyData),
+        .dataSet(AAOptionsData.sankeyData()),
                ]))
 
 
@@ -89,7 +89,7 @@ class AAOptionsProComposer:
         .innerSizeSet("20%")
         .dataLabelsSet(AADataLabels()
                        .enabledSet(False))
-        .dataSet(AAOptionsData.variablepieData)
+        .dataSet(AAOptionsData.variablepieData())
                ]))
     
     return aaOptions
@@ -116,7 +116,7 @@ class AAOptionsProComposer:
                            # .styleSet(AAStyleColorSizeWeight(AAColor.whiteColor, 15, AAChartFontWeightTypeBold))
                            )
                    ])
-        .dataSet(AAOptionsData.treemapWithLevelsData)]))
+        .dataSet(AAOptionsData.treemapWithLevelsData())]))
 
 
   @staticmethod
@@ -146,7 +146,7 @@ class AAOptionsProComposer:
     seriesElementArr = [
         AASeriesElement()
         .nameSet("人工成本")
-        .dataSet(AAOptionsData.variwideData)
+        .dataSet(AAOptionsData.variwideData())
         .dataLabelsSet(AADataLabels()
                        .enabledSet(True)
                        .formatSet("€{point.y:.0f"))
@@ -204,7 +204,7 @@ class AAOptionsProComposer:
                                .toSet(0.5))
             
                    ])
-        .dataSet(AAOptionsData.sunburstData)
+        .dataSet(AAOptionsData.sunburstData())
     ]
     
     aaOptions = (AAOptions()
@@ -231,7 +231,7 @@ class AAOptionsProComposer:
         .typeSet(AAChartType.dependencywheel)
         .nameSet("Dependency wheel series")
         .keysSet(["from","to","weight"])
-        .dataSet(AAOptionsData.dependencywheelData)
+        .dataSet(AAOptionsData.dependencywheelData())
         .dataLabelsSet(AADataLabels()
                        .enabledSet(True)
                        .colorSet("#333")
@@ -284,7 +284,7 @@ class AAOptionsProComposer:
     #     AASeriesElement()
     #     .nameSet("Sales")
     #     .borderWidthSet(1)
-    #     .dataSet(AAOptionsData.heatmapData)
+    #     .dataSet(AAOptionsData.heatmapData())
     #     .dataLabelsSet(AADataLabels()
     #                    .enabledSet(True)
     #                    .colorSet(AAColor.red))
@@ -366,7 +366,7 @@ class AAOptionsProComposer:
     .seriesSet([
         AASeriesElement()
         .typeSet(AAChartType.venn)
-        .dataSet(AAOptionsData.vennData)]))
+        .dataSet(AAOptionsData.vennData())]))
 
 
   @staticmethod
@@ -399,7 +399,7 @@ class AAOptionsProComposer:
     seriesElementArr = [
         AASeriesElement()
         .nameSet("各国预期寿命变化")
-        .dataSet(AAOptionsData.dumbbellData)
+        .dataSet(AAOptionsData.dumbbellData())
     ]
     
     aaOptions = (AAOptions()
@@ -444,7 +444,7 @@ class AAOptionsProComposer:
     seriesElementArr = [
         AASeriesElement()
         .nameSet("Population")
-        .dataSet(AAOptionsData.lollipopData)
+        .dataSet(AAOptionsData.lollipopData())
     ]
     
     aaOptions = (AAOptions()
@@ -513,7 +513,7 @@ class AAOptionsProComposer:
         AASeriesElement()
         .nameSet("Height")
         .colorByPointSet(True)
-        .dataSet(AAOptionsData.columnpyramidData)
+        .dataSet(AAOptionsData.columnpyramidData())
                ]))
 
 
@@ -566,7 +566,7 @@ class AAOptionsProComposer:
         AASeriesElement()
         .nameSet("Height")
         .colorByPointSet(True)
-        .dataSet(AAOptionsData.tilemapData)
+        .dataSet(AAOptionsData.tilemapData())
                ]))
 
 
@@ -582,7 +582,7 @@ class AAOptionsProComposer:
                   .maxColorSet(AAColor.red))
     .seriesSet([
         AASeriesElement()
-        .dataSet(AAOptionsData.treemapWithColorAxisData)
+        .dataSet(AAOptionsData.treemapWithColorAxisData())
                ]))
 
 
@@ -609,7 +609,7 @@ class AAOptionsProComposer:
                            .enabledSet(True))
             .borderWidthSet(3)
                    ])
-        .dataSet(AAOptionsData.drilldownTreemapData)
+        .dataSet(AAOptionsData.drilldownTreemapData())
                ]))
 
 
@@ -642,7 +642,7 @@ class AAOptionsProComposer:
     .seriesSet([
         AASeriesElement()
         .borderRadiusSet(2)
-        .dataSet(AAOptionsData.xrangeData)
+        .dataSet(AAOptionsData.xrangeData())
                ]))
 
 
@@ -657,7 +657,7 @@ class AAOptionsProComposer:
     .seriesSet([
         AASeriesElement()
         .nameSet("Sample vector field")
-        .dataSet(AAOptionsData.vectorData)
+        .dataSet(AAOptionsData.vectorData())
                ]))
 
 
@@ -694,7 +694,7 @@ class AAOptionsProComposer:
                    .fillColorSet(AAColor.white)#点的填充色(用来设置折线连接点的填充色)
                    .lineWidthSet(2)#外沿线的宽度(用来设置折线连接点的轮廓描边的宽度)
                    .lineColorSet(""))#外沿线的颜色(用来设置折线连接点的轮廓描边颜色，当值为空字符串时，默认取数据点或数据列的颜色))
-        .dataSet(AAOptionsData.bellcurveData)
+        .dataSet(AAOptionsData.bellcurveData())
                ]))
 
 
@@ -711,7 +711,7 @@ class AAOptionsProComposer:
               .visibleSet(False))
     .seriesSet([
         AASeriesElement()
-        .dataSet(AAOptionsData.timelineData)
+        .dataSet(AAOptionsData.timelineData())
                ]))
 
 
@@ -730,7 +730,7 @@ class AAOptionsProComposer:
         AASeriesElement()
         .nameSet("Representatives")
         .keysSet(["name","y","color","label"])
-        .dataSet(AAOptionsData.itemData)
+        .dataSet(AAOptionsData.itemData())
         .dataLabelsSet(AADataLabels()
                        .enabledSet(False))
         .sizeSet("170%")
@@ -748,11 +748,11 @@ class AAOptionsProComposer:
         AASeriesElement()
         .typeSet(AAChartType.windbarb)
         .nameSet("Wind")
-        .dataSet(AAOptionsData.windbarbData),
+        .dataSet(AAOptionsData.windbarbData()),
         AASeriesElement()
         .typeSet(AAChartType.area)
         .nameSet("Wind speed")
-        .dataSet(AAOptionsData.windbarbData)
+        .dataSet(AAOptionsData.windbarbData())
         .keysSet(["y"])
         .markerSet(AAMarker()
                    .fillColorSet(AAColor.white)#点的填充色(用来设置折线连接点的填充色)
@@ -774,7 +774,7 @@ class AAOptionsProComposer:
         AASeriesElement()
         .dataLabelsSet(AADataLabels()
                        .enabledSet(False))
-        .dataSet(AAOptionsData.networkgraphData),
+        .dataSet(AAOptionsData.networkgraphData()),
                ]))
 
 
@@ -787,7 +787,7 @@ class AAOptionsProComposer:
               .textSet("词云图"))
     .seriesSet([
         AASeriesElement()
-        .dataSet(AAOptionsData.wordcloudData),
+        .dataSet(AAOptionsData.wordcloudData()),
                ]))
 
 
@@ -806,7 +806,7 @@ class AAOptionsProComposer:
                 .pointFormatSet("{point.description<br><span style=""font-size: 10px"">Source: Wikipedia</span>"))
     .seriesSet([
         AASeriesElement()
-        .dataSet(AAOptionsData.eulerData),
+        .dataSet(AAOptionsData.eulerData()),
                ]))
 
 
@@ -823,7 +823,7 @@ class AAOptionsProComposer:
                 .typeSet(AAChartType.organization)
                 .nameSet("Highsoft")
                 .keysSet(["from", "to"])
-                .dataSet(AAOptionsData.organizationData)
+                .dataSet(AAOptionsData.organizationData())
                 .levelsSet([
                     AALevelsElement()
                         .levelSet(0)
@@ -847,7 +847,7 @@ class AAOptionsProComposer:
                         .levelSet(4)
                         .colorSet("#359154")
                 ])
-                .nodesSet(AAOptionsData.organizationNodesData)
+                .nodesSet(AAOptionsData.organizationNodesData())
                 .colorByPointSet(False)
                 .colorSet("#007ad0")
                 .dataLabelsSet(AADataLabels()
@@ -879,7 +879,7 @@ class AAOptionsProComposer:
                     .alignSet(AAChartAlignType.left)
                     .colorSet(AAColor.black))
                 .offsetSet("65%")
-                .dataSet(AAOptionsData.arcdiagram1Data)
+                .dataSet(AAOptionsData.arcdiagram1Data())
             ]))
 
 
@@ -907,7 +907,7 @@ class AAOptionsProComposer:
                     # .linkTextPathSet(AATextPath()
                     #     .enabledSet(True))
             )
-                .dataSet(AAOptionsData.arcdiagram2Data)
+                .dataSet(AAOptionsData.arcdiagram2Data())
             ]))
 
 
@@ -932,7 +932,7 @@ class AAOptionsProComposer:
                     .paddingSet(0)
             )
                 .offsetSet("60%")
-                .dataSet(AAOptionsData.arcdiagram3Data)
+                .dataSet(AAOptionsData.arcdiagram3Data())
             ]))
 
 
@@ -972,14 +972,14 @@ class AAOptionsProComposer:
         .seriesSet([
             AASeriesElement()
                 .typeSet(AAChartType.flame)
-                .dataSet(AAOptionsData.flameData)
+                .dataSet(AAOptionsData.flameData())
                 .yAxisSet(1)
                 .xAxisSet(1),
             AASeriesElement()
                 .visibleSet(False)
                 .sizeSet("100%")
                 .typeSet(AAChartType.sunburst)
-                .dataSet(AAOptionsData.sunburst2Data)
+                .dataSet(AAOptionsData.sunburst2Data())
                 .allowDrillToNodeSet(True)
                 .cursorSet("pointer")
                 .levelsSet([
