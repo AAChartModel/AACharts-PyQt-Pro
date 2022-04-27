@@ -43,7 +43,7 @@ class AALevelsElement:
         borderDashStyle = prop
         return self
     
-    def borderWidth(self, prop: Any):
+    def borderWidth(self, prop: any):
         borderWidth = prop
         return self
     
