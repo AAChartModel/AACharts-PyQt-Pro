@@ -949,7 +949,7 @@ class AAOptionsProComposer:
             .textSet("Highcharts chart rendering process"))
         .legendSet(AALegend()
             .enabledSet(False))
-        .xAxisSet((id)[
+        .xAxisSet([
             AAXAxis()
                 .visibleSet(False),
             AAXAxis()
@@ -959,7 +959,7 @@ class AAOptionsProComposer:
                 .minPaddingSet(0)
                 .maxPaddingSet(0)
             ])
-        .yAxisSet((id)[
+        .yAxisSet([
             AAYAxis()
                 .visibleSet(False),
             AAYAxis()
@@ -1027,7 +1027,7 @@ class AAOptionsProComposer:
                     .styleSet(AAStyle()
                         .colorSet(AAColor.black)
                         .textOutlineSet("none")
-                        .fontWeightSet("normal")))))
+                        .fontWeightSet(AAChartFontWeightType.regular)))))
         .seriesSet(AAOptionsSeries.packedbubbleSeries))
 
 
