@@ -74,10 +74,10 @@ class AAChartType(Enum):
     columnpyramid   = "columnpyramid"
     xrange          = "xrange"
 
-    Tilemap         = "tilemap"
+    tilemap         = "tilemap"
     vector          = "vector"
-    Bellcurve       = "bellcurve"
-    Timeline        = "timeline"
+    bellcurve       = "bellcurve"
+    timeline        = "timeline"
     item            = "item"
     windbarb        = "windbarb"
     networkgraph    = "networkgraph"
