@@ -65,7 +65,7 @@ class AAOptionsProComposer:
   @staticmethod
   def variablepieChart():
     aaChart = (AAChart()
-    .typeSet(AAChartType.Variablepie))
+    .typeSet(AAChartType.variablepie))
     
     aaTitle = (AATitle()
     .textSet("不同国家人口密度及面积对比"))
@@ -104,15 +104,15 @@ class AAOptionsProComposer:
                .enabledSet(False))
     .seriesSet([
         AASeriesElement()
-        .typeSet(AAChartType.Treemap)
+        .typeSet(AAChartType.treemap)
         .levelsSet([
             AALevelsElement()
             .levelSet(1)
             .layoutAlgorithmSet("sliceAndDice")
             .dataLabelsSet(AADataLabels()
                            .enabledSet(True)
-                           .alignSet(AAChartAlignType.Left)
-                           .verticalAlignSet(AAChartVerticalAlignType.Top)
+                           .alignSet(AAChartAlignType.left)
+                           .verticalAlignSet(AAChartVerticalAlignType.top)
                            # .styleSet(AAStyleColorSizeWeight(AAColor.whiteColor, 15, AAChartFontWeightTypeBold))
                            )
                    ])
@@ -122,7 +122,7 @@ class AAOptionsProComposer:
   @staticmethod
   def variwideChart():
     aaChart = (AAChart()
-    .typeSet(AAChartType.Variwide))
+    .typeSet(AAChartType.variwide))
     
     aaTitle = (AATitle()
     .textSet("2016 年欧洲各国人工成本"))
@@ -167,7 +167,7 @@ class AAOptionsProComposer:
   @staticmethod
   def sunburstChart():
     aaChart = (AAChart()
-    .typeSet(AAChartType.Sunburst))
+    .typeSet(AAChartType.sunburst))
     
     aaTitle = (AATitle()
     .textSet("2017 世界人口分布"))
@@ -228,7 +228,7 @@ class AAOptionsProComposer:
               .textSet("AAChartKit-Pro 和弦图"))
     .seriesSet([
         AASeriesElement()
-        .typeSet(AAChartType.Dependencywheel)
+        .typeSet(AAChartType.dependencywheel)
         .nameSet("Dependency wheel series")
         .keysSet(["from","to","weight"])
         .dataSet(AAOptionsData.dependencywheelData)
@@ -247,7 +247,7 @@ class AAOptionsProComposer:
   def heatmapChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Heatmap))
+              .typeSet(AAChartType.heatmap))
     .titleSet(AATitle()
               .textSet("Sales per employee per weekday"))
     .xAxisSet(AAXAxis()
@@ -267,9 +267,9 @@ class AAOptionsProComposer:
                   .maxColorSet("#7cb5ec"))
     .legendSet(AALegend()
                .enabledSet(True)
-               .alignSet(AAChartAlignType.Right)
-               .layoutSet(AAChartLayoutType.Vertical)
-               .verticalAlignSet(AAChartVerticalAlignType.Top)
+               .alignSet(AAChartAlignType.right)
+               .layoutSet(AAChartLayoutType.vertical)
+               .verticalAlignSet(AAChartVerticalAlignType.top)
                .ySet(25))
     .tooltipSet(AATooltip()
                 .enabledSet(True)
@@ -287,16 +287,14 @@ class AAOptionsProComposer:
         .dataLabelsSet(AADataLabels()
                        .enabledSet(True)
                        .colorSet(AAColor.red))
-               ]))
-
-
+               ])
 
 # # https:#www.highcharts.com.cn/demo/highcharts/packed-bubble
   @staticmethod
   def packedbubbleChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Packedbubble))
+              .typeSet(AAChartType.packedbubble))
     .titleSet(AATitle()
               .textSet("2014 年世界各地碳排放量"))
     .tooltipSet(AATooltip()
@@ -384,7 +382,7 @@ class AAOptionsProComposer:
     
     aaXAxis = (AAXAxis()
     .visibleSet(True)
-    .typeSet(AAChartAxisTypeCategory))
+    .typeSet(AAChartAxisType.category))
     
     aaYAxis = (AAYAxis()
     .visibleSet(True)
@@ -429,11 +427,11 @@ class AAOptionsProComposer:
     
     aaXAxis = (AAXAxis()
     .visibleSet(True)
-    .typeSet(AAChartAxisTypeCategory))
+    .typeSet(AAChartAxisType.category))
     
     aaYAxis = (AAYAxis()
     .visibleSet(True)
-    .titleSet(AAAxisTitle()
+    .titleSet(AATitle()
               .textSet("人口")))
     
     aaTooltip = (AATooltip()
@@ -465,7 +463,7 @@ class AAOptionsProComposer:
   def streamgraphChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Streamgraph))
+              .typeSet(AAChartType.streamgraph))
     .colorsSet([
         "#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9",
         "rgb(255,143,179)","rgb(255,117,153)",
@@ -502,7 +500,7 @@ class AAOptionsProComposer:
               .textSet("世界 5 大金字塔"))
     .xAxisSet(AAXAxis()
               .visibleSet(True)
-              .typeSet(AAChartAxisTypeCategory))
+              .typeSet(AAChartAxisType.category))
     .yAxisSet(AAYAxis()
               .visibleSet(True)
               .titleSet(AATitle()
@@ -667,13 +665,13 @@ class AAOptionsProComposer:
     return (AAOptions()
     .titleSet(AATitle()
               .textSet("Bell curve"))
-    .xAxisSet((id)[
+    .xAxisSet([
         AATitle()
         .textSet("Data"),
         AATitle()
         .textSet("Bell curve")
                   ])
-    .yAxisSet((id)[
+    .yAxisSet([
         AATitle()
         .textSet("Data"),
         AATitle()
@@ -690,7 +688,7 @@ class AAOptionsProComposer:
         ,
         AASeriesElement()
         .nameSet("Data")
-        .typeSet(AAChartType.Scatter)
+        .typeSet(AAChartType.scatter)
         .markerSet(AAMarker()
                    .fillColorSet(AAColor.white)#点的填充色(用来设置折线连接点的填充色)
                    .lineWidthSet(2)#外沿线的宽度(用来设置折线连接点的轮廓描边的宽度)
@@ -734,7 +732,7 @@ class AAOptionsProComposer:
         .dataSet(AAOptionsData.itemData)
         .dataLabelsSet(AADataLabels()
                        .enabledSet(False))
-        .sizeSet((id)"170%")
+        .sizeSet("170%")
                ]))
 
 
@@ -747,11 +745,11 @@ class AAOptionsProComposer:
               .offsetSet(40))
     .seriesSet([
         AASeriesElement()
-        .typeSet(AAChartType.Windbarb)
+        .typeSet(AAChartType.windbarb)
         .nameSet("Wind")
         .dataSet(AAOptionsData.windbarbData),
         AASeriesElement()
-        .typeSet(AAChartType.Area)
+        .typeSet(AAChartType.area)
         .nameSet("Wind speed")
         .dataSet(AAOptionsData.windbarbData)
         .keysSet(["y"])
@@ -766,7 +764,7 @@ class AAOptionsProComposer:
   def networkgraphChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Networkgraph))
+              .typeSet(AAChartType.networkgraph))
     .titleSet(AATitle()
               .textSet("The Indo-European Laungauge Tree"))
     .subtitleSet(AASubtitle()
@@ -783,7 +781,7 @@ class AAOptionsProComposer:
   def wordcloudChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Wordcloud))
+              .typeSet(AAChartType.wordcloud))
     .titleSet(AATitle()
               .textSet("词云图"))
     .seriesSet([
@@ -796,7 +794,7 @@ class AAOptionsProComposer:
   def eulerChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Venn))
+              .typeSet(AAChartType.venn))
     .titleSet(AATitle()
               .textSet("欧拉图和韦恩图的关系"))
     .tooltipSet(AATooltip()
@@ -821,7 +819,7 @@ class AAOptionsProComposer:
             .textSet("Highsoft 公司组织结构"))
         .seriesSet([
             AASeriesElement()
-                .typeSet(AAChartType.Organization)
+                .typeSet(AAChartType.organization)
                 .nameSet("Highsoft")
                 .keysSet(["from", "to"])
                 .dataSet(AAOptionsData.organizationData)
@@ -870,14 +868,14 @@ class AAOptionsProComposer:
         .seriesSet([
             AASeriesElement()
                 .keysSet(["from", "to", "weight"])
-                .typeSet(AAChartType.Arcdiagram)
+                .typeSet(AAChartType.arcdiagram)
                 .nameSet("Train connections")
                 .linkWeightSet(1)
                 .centeredLinksSet(True)
                 .dataLabelsSet(AADataLabels()
                     .rotationSet(90)
                     .ySet(30)
-                    .alignSet(AAChartAlignType.Left)
+                    .alignSet(AAChartAlignType.left)
                     .colorSet(AAColor.black))
                 .offsetSet("65%")
                 .dataSet(AAOptionsData.arcdiagram1Data)
@@ -895,9 +893,9 @@ class AAOptionsProComposer:
             AASeriesElement()
                 .linkWeightSet(1)
                 .keysSet(["from", "to", "weight", ])
-                .typeSet(AAChartType.Arcdiagram)
+                .typeSet(AAChartType.arcdiagram)
                 .markerSet(AAMarker()
-                    .symbolSet(AAChartSymbolType.Triangle)
+                    .symbolSet(AAChartSymbolType.triangle)
                     .lineWidthSet(2)
                     .lineColorSet(AAColor.white))
                 .centeredLinksSet(True)
@@ -923,9 +921,9 @@ class AAOptionsProComposer:
             AASeriesElement()
                 .keysSet(["from", "to", "weight", ])
 #                .centerPosSet("50%")
-                .typeSet(AAChartType.Arcdiagram)
+                .typeSet(AAChartType.arcdiagram)
                 .dataLabelsSet(AADataLabels()
-                    .alignSet(AAChartAlignType.Right)
+                    .alignSet(AAChartAlignType.right)
                     .xSet(-20)
                     .ySet(-2)
                     .colorSet("#333333")
@@ -943,10 +941,10 @@ class AAOptionsProComposer:
         .chartSet(AAChart()
             .invertedSet(True))
         .titleSet(AATitle()
-            .alignSet(AAChartAlignType.Left)
+            .alignSet(AAChartAlignType.left)
             .textSet("Flame chart (layout: flame)"))
         .subtitleSet(AASubtitle()
-            .alignSet(AAChartAlignType.Left)
+            .alignSet(AAChartAlignType.left)
             .textSet("Highcharts chart rendering process"))
         .legendSet(AALegend()
             .enabledSet(False))
@@ -972,14 +970,14 @@ class AAOptionsProComposer:
             ])
         .seriesSet([
             AASeriesElement()
-                .typeSet(AAChartType.Flame)
+                .typeSet(AAChartType.flame)
                 .dataSet(AAOptionsData.flameData)
                 .yAxisSet(1)
                 .xAxisSet(1),
             AASeriesElement()
                 .visibleSet(False)
-                .sizeSet((id)"100%")
-                .typeSet(AAChartType.Sunburst)
+                .sizeSet("100%")
+                .typeSet(AAChartType.sunburst)
                 .dataSet(AAOptionsData.sunburst2Data)
                 .allowDrillToNodeSet(True)
                 .cursorSet("pointer")
@@ -1005,7 +1003,7 @@ class AAOptionsProComposer:
   def packedbubbleSpiralChart():
     return (AAOptions()
         .chartSet(AAChart()
-            .typeSet(AAChartType.Packedbubble)
+            .typeSet(AAChartType.packedbubble)
 #            .heightSet("100%")
                   )
         .titleSet(AATitle()
@@ -1021,10 +1019,10 @@ class AAOptionsProComposer:
                 .dataLabelsSet(AADataLabels()
                     .enabledSet(True)
                     .formatSet("{point.name")
-                    .filterSet(AAFilter()
-                        .propertySet("y")
-                        .operatorSet(">")
-                        .valueSet(250))
+                    # .filterSet(AAFilter()
+                    #     .propertySet("y")
+                    #     .operatorSet(">")
+                    #     .valueSet(250))
                     .styleSet(AAStyle()
                         .colorSet(AAColor.black)
                         .textOutlineSet("none")
