@@ -58,7 +58,19 @@ class AASeriesElement:
     enableMouseTracking: bool
     dataSorting: AADataSorting
     reversed: bool           #Only useful for pyramid chart and funnel chart
-    
+
+    levels: list
+    allowDrillToNode: bool
+    xAxis: int
+    baseSeries: int
+
+    nodes: list
+    nodeWidth: float
+    cursor: str
+    offset: str  # The offset of an arc diagram nodes column in relation to the plotArea. The offset equal to 50% places nodes in the center of a chart. By default the series is placed so that the biggest node is touching the bottom border of the plotArea. Defaults to '100%'.
+    linkWeight: int  # The global link weight. If not set, width is calculated per link, depending on the weight value. Defaults to undefined.
+    centeredLinks: bool  # The option to center links rather than position them one after another. Defaults to false.
+
     def typeSet(self, prop: AAChartType):
         self.type = prop.value
         return self
@@ -220,6 +232,51 @@ class AASeriesElement:
     def reversedSet(self, prop: bool):
         self.reversed = prop
         return self
+
+
+
+    def levels(self, prop: list):
+        levels = prop
+        return self
+
+    def allowDrillToNode(self, prop: bool):
+        allowDrillToNode = prop
+        return self
+
+    def xAxis(self, prop: int):
+        xAxis = prop
+        return self
+
+    def baseSeries(self, prop: int):
+        baseSeries = prop
+        return self
+
+    def nodes(self, prop: list):
+        nodes = prop
+        return self
+
+    def nodeWidth(self, prop: float):
+        nodeWidth = prop
+        return self
+
+    def cursor(self, prop: str):
+        cursor = prop
+        return self
+
+    def offset(self, prop: str):
+        offset = prop
+        return self
+
+    def linkWeight(self, prop: int):
+        linkWeight = prop
+        return self
+
+    def centeredLinks(self, prop: bool):
+        centeredLinks = prop
+        return self
+
+
+
 
 
 
