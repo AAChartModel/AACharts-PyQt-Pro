@@ -29,7 +29,7 @@ class PYChartView(QWebEngineView):
     def aa_drawChartWithChartOptions(self, aaOptions: AAOptions):
         if len(self.optionsJson) < 1:
             self.configureOptionsJsonStringWithAAOptions(aaOptions)
-            self.load(QUrl("file:////Users/admin/Documents/GitHub/AACharts-PyQt/aacharts/AAJSFiles/AAChartView.html"))
+            self.load(QUrl("file:////Users/admin/Documents/GitHub/AACharts-PyQt-Pro/aacharts/AAJSFiles/AAChartView.html"))
         else:
             self.aa_refreshChartWholeContentWithChartOptions(aaOptions)
 
