@@ -132,7 +132,7 @@ class AAOptionsProComposer:
     
     aaXAxis = (AAXAxis()
     .visibleSet(True)
-    .typeSet("category")
+    .typeSet(AAChartAxisType.category)
     .titleSet(AATitle()
               .textSet(" 柱子宽度与 GDP 成正比")))
     
@@ -327,7 +327,7 @@ class AAOptionsProComposer:
   def packedbubbleSplitChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Packedbubble))
+              .typeSet(AAChartType.packedbubble))
     .titleSet(AATitle()
               .textSet("2014 年世界各地碳排放量"))
     .tooltipSet(AATooltip()
@@ -365,14 +365,14 @@ class AAOptionsProComposer:
               .textSet("The Unattainable Triangle"))
     .seriesSet([
         AASeriesElement()
-        .typeSet(AAChartType.Venn)
+        .typeSet(AAChartType.venn)
         .dataSet(AAOptionsData.vennData)]))
 
 
   @staticmethod
   def dumbbellChart():
     aaChart = (AAChart()
-    .typeSet(AAChartType.Dumbbell)
+    .typeSet(AAChartType.dumbbell)
     .invertedSet(True))
     
     aaTitle = (AATitle()
@@ -418,7 +418,7 @@ class AAOptionsProComposer:
   @staticmethod
   def lollipopChart():
     aaChart = (AAChart()
-    .typeSet(AAChartType.Lollipop))
+    .typeSet(AAChartType.lollipop))
     
     aaTitle = (AATitle()
     .textSet("世界十大人口国家"))
@@ -477,7 +477,7 @@ class AAOptionsProComposer:
                  .textSet("1924-2014"))
     .xAxisSet(AAXAxis()
               .visibleSet(True)
-              .typeSet("category")
+              .typeSet(AAChartAxisType.category)
               .categoriesSet([
                   "", "1924", "1928", "1932", "1936", "1940", "1944", "1948", "1952", "1956", "1960",
                   "1964", "1968", "1972", "1976", "1980", "1984", "1988", "1992", "1994", "1998",
@@ -496,7 +496,7 @@ class AAOptionsProComposer:
   def columnpyramidChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Columnpyramid))
+              .typeSet(AAChartType.columnpyramid))
     .titleSet(AATitle()
               .textSet("世界 5 大金字塔"))
     .xAxisSet(AAXAxis()
@@ -521,7 +521,7 @@ class AAOptionsProComposer:
   def tilemapChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Tilemap))
+              .typeSet(AAChartType.tilemap))
     .titleSet(AATitle()
               .textSet("U.S. states by population in 2016"))
     .xAxisSet(AAXAxis()
@@ -574,7 +574,7 @@ class AAOptionsProComposer:
   def treemapWithColorAxisData():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Treemap))
+              .typeSet(AAChartType.treemap))
     .titleSet(AATitle()
               .textSet("矩形树图"))
     .colorAxisSet(AAColorAxis()
@@ -590,7 +590,7 @@ class AAOptionsProComposer:
   def drilldownTreemapChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Treemap))
+              .typeSet(AAChartType.treemap))
     .titleSet(AATitle()
               .textSet("2012年，全球每10w人口死亡率"))
     .subtitleSet(AASubtitle()
@@ -601,7 +601,7 @@ class AAOptionsProComposer:
                                 .layoutAlgorithmSet("squarified")))
     .seriesSet([
         AASeriesElement()
-        .typeSet(AAChartType.Treemap)
+        .typeSet(AAChartType.treemap)
         .levelsSet([
             AALevelsElement()
             .levelSet(1)
@@ -617,7 +617,7 @@ class AAOptionsProComposer:
   def xrangeChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Xrange))
+              .typeSet(AAChartType.xrange))
     .colorsSet([
         "#7cb5ec","#434348","#90ed7d","#f7a35c","#8085e9",
         "rgb(255,143,179)","rgb(255,117,153)",
@@ -650,7 +650,7 @@ class AAOptionsProComposer:
   def vectorChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Vector))
+              .typeSet(AAChartType.vector))
     .colorsSet(["red"])
     .titleSet(AATitle()
               .textSet("AAChartKit-Pro Vector plot"))
@@ -681,7 +681,7 @@ class AAOptionsProComposer:
     .seriesSet([
         AASeriesElement()
         .nameSet("Bell curve")
-        .typeSet(AAChartType.Bellcurve)
+        .typeSet(AAChartType.bellcurve)
         .xAxisSet(1)
         .yAxisSet(1)
         .baseSeriesSet(1)
@@ -702,7 +702,7 @@ class AAOptionsProComposer:
   def timelineChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Timeline))
+              .typeSet(AAChartType.timeline))
     .titleSet(AATitle()
               .textSet("人类太空探索时间表"))
     .subtitleSet(AASubtitle()
@@ -719,7 +719,7 @@ class AAOptionsProComposer:
   def itemChart():
     return (AAOptions()
     .chartSet(AAChart()
-              .typeSet(AAChartType.Item))
+              .typeSet(AAChartType.item))
     .titleSet(AATitle()
               .textSet("AAChartKit-Pro item chart"))
     .subtitleSet(AASubtitle()
