@@ -32,6 +32,7 @@ class AASeriesElement:
     lineWidth: float         #The line width, It is only valid for line, spline, area, areaspline, arearange and arearangespline chart types
     borderWidth: float        #The border width, It is only valid for column, bar, pie, columnrange, pyramid and funnel chart types
     borderColor: str        #The border color, It is only valid for column, bar, pie, columnrange, pyramid and funnel chart types
+    borderRadius: float      #The border radius, It is only valid for column, bar, pie, columnrange, pyramid and funnel chart types
     fillColor: str           #The fill color, It is only valid for area, areaspline, arearange and arearangespline chart types
     fillOpacity: float        #The fill opacity, It is only valid for area, areaspline, arearange and arearangespline chart types. Note that when you set an explicit fillColor, the fillOpacity is not applied. Instead, you should define the opacity in the fillColor with an rgba color definition. Deafualt value：0.75.
     threshold: float         #The threshold, also called zero level or base level. For line type series self is only used in conjunction with negativeColor. default：0.
@@ -100,7 +101,10 @@ class AASeriesElement:
     def borderColorSet(self, prop: str):
         self.borderColor = prop
         return self
-   
+
+    def borderRadiusSet(self, prop: str):
+        self.borderRadius = prop
+        return self
     
     def fillColorSet(self, prop: str):
         self.fillColor = prop

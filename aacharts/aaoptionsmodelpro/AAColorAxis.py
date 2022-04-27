@@ -36,7 +36,7 @@ class AADataClassesElement:
     color: str
     name: str
     
-    def _fromSet(self, prop: any):
+    def fromSet(self, prop: any):
         _from = prop
         return self
     
