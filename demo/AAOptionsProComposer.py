@@ -15,7 +15,7 @@ from aacharts.aaoptionsmodelpro.AATreemap import AATreemap
 from demo.AAOptionsData import AAOptionsData
 from aacharts.aaoptionsmodel.AAShadow import AAShadow
 from aacharts.aaoptionsmodel.AAZonesElement import AAZonesElement
-from aacharts.aatool.AAColor import AAColor
+from aacharts.aatool.AAColor import AAColor, AARgbaColor
 from aacharts.aatool.AAGradientColor import AAGradientColor
 from aacharts.aachartcreator.AASeriesElement import AASeriesElement
 from aacharts.aachartcreator.AAChartModel import AAChartModel, AAChartSymbolStyleType, AAChartSymbolType, AAChartType
@@ -28,7 +28,7 @@ from aacharts.aaoptionsmodel.AADataLabels import AADataLabels
 from aacharts.aaoptionsmodel.AAStates import AAStates, AAHover, AAHalo, AAInactive, AASelect
 from aacharts.aatool.AAGradientColor import AALinearGradientDirection
 from aacharts.aaoptionsmodel.AAPlotOptions import AAColumn
-from demo.AAChartSymbolConstant import *
+# from demo.AAChartSymbolConstant import *
 
 from demo.AAOptionsSeries import AAOptionsSeries
 
@@ -41,18 +41,18 @@ class AAOptionsProComposer:
     .titleSet(AATitle()
               .textSet("AAChartKit-Pro 桑基图"))
     .colorsSet([
-        # AARgbaColor(137, 78, 36, 1.0),
-        # AARgbaColor(220, 36, 30, 1.0),
-        # AARgbaColor(255, 206, 0, 1.0),
-        # AARgbaColor(1, 114, 41, 1.0),
-        # AARgbaColor(0, 175, 173, 1.0),
-        # AARgbaColor(215, 153, 175, 1.0),
-        # AARgbaColor(106, 114, 120, 1.0),
-        # AARgbaColor(114, 17, 84, 1.0),
-        # AARgbaColor(0, 0, 0, 1.0),
-        # AARgbaColor(0, 24, 168, 1.0),
-        # AARgbaColor(0, 160, 226, 1.0),
-        # AARgbaColor(106, 187, 170, 1.0),
+        AARgbaColor(137, 78, 36, 1.0),
+        AARgbaColor(220, 36, 30, 1.0),
+        AARgbaColor(255, 206, 0, 1.0),
+        AARgbaColor(1, 114, 41, 1.0),
+        AARgbaColor(0, 175, 173, 1.0),
+        AARgbaColor(215, 153, 175, 1.0),
+        AARgbaColor(106, 114, 120, 1.0),
+        AARgbaColor(114, 17, 84, 1.0),
+        AARgbaColor(0, 0, 0, 1.0),
+        AARgbaColor(0, 24, 168, 1.0),
+        AARgbaColor(0, 160, 226, 1.0),
+        AARgbaColor(106, 187, 170, 1.0),
                ])
     .seriesSet([
         AASeriesElement()

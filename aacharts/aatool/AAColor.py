@@ -1,3 +1,6 @@
+def AARgbaColor(red: int, green: int, blue: int, alpha: float):
+    return f"rgba({red},{green},{blue},{alpha})"
+
 class AAColor:
     black: str = "black"
 
