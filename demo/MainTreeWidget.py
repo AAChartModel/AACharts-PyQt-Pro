@@ -4,6 +4,7 @@ from PySide6 import QtWidgets, QtCore
 
 from aacharts.aachartcreator.PYChartView import PYChartView
 from aacharts.aaenum.AAEnum import AAChartType
+from demo.AAOptionsProComposer import AAOptionsProComposer
 
 
 class MainTreeWidget(QtWidgets.QWidget):
@@ -29,15 +30,38 @@ class MainTreeWidget(QtWidgets.QWidget):
 
         chartTypeTitleArr = [
             # Basic types chart
-            [
-                "Column Chart---柱形图",
-                "Bar Chart---条形图",
-                "Area Chart---折线填充图",
-                "Areaspline Chart---曲线填充图",
-                "Step Area Chart--- 直方折线填充图",
-                "Step Line Chart--- 直方折线图",
-                "Line Chart---折线图",
-                "Spline Chart---曲线图",
+           [  "sankeyChart---桑基图",
+              "variablepieChart---可变宽度的饼图",
+              "treemapChart---树形图",
+              "variwideChart---可变宽度的柱形图",
+              "sunburstChart---旭日图",
+              "dependencywheelChart---和弦图",
+              "heatmapChart---热力图",
+              "packedbubbleChart---气泡🎈填充图",
+              "packedbubbleSplitChart---圆🎈堆积图",
+              "vennChart---韦恩图",
+              "dumbbellChart---哑铃图",
+              "lollipopChart---棒棒糖🍭图",
+              "streamgraphChart---流图",
+              "columnpyramidChart---角锥柱形图",
+              "tilemapChart---砖块图🧱||蜂巢图🐝",
+              "simpleTreemapChart---简单矩形树🌲图",
+              "drilldownTreemapChart---可下钻的矩形树🌲图",
+              "xrangeChart---X轴范围图||甘特图||条码图",
+              "vectorChart---向量图🏹",
+              "bellcurveChart---贝尔曲线图",
+              "timelineChart---时序图⌚️",
+              "itemChart---议会项目图",
+              "windbarbChart---风羽图",
+              "networkgraphChart---力导关系图",
+              "wordcloudChart---词云图",
+              "eulerChart---欧拉图",
+              "organizationChart---组织结构图",
+              "arcdiagramChart1---弧形图1",
+              "arcdiagramChart2---弧形图2",
+              "arcdiagramChart3---弧形图3",
+              "flameChart---火焰🔥图",
+              "packedbubbleSpiralChart---渐进变化的气泡🎈图"
             ],
             # Special types chart
             [
@@ -230,7 +254,7 @@ class MainTreeWidget(QtWidgets.QWidget):
                 sectionIndexValue = int(sectionIndex)
                 rowIndexValue = int(rowIndexStr) - 1
                 if sectionIndexValue == 1:
-                   aaChartModel = self.basicChartConfigurationWithSelectedIndex(rowIndexValue)
+                   aaChartModel = self.chartConfigurationWithSelectedIndex(rowIndexValue)
                    self.chartView.aa_drawChartWithChartModel(aaChartModel)
                 if sectionIndexValue == 2:
                    aaChartModel = self.specialChartConfigurationWithSelectedIndex(rowIndexValue)
@@ -290,5 +314,42 @@ class MainTreeWidget(QtWidgets.QWidget):
         elif selectedIndex == 7:
             chartType = AAChartType.spline
         return self.configureTheStyleForDifferentTypeChart(chartType, selectedIndex)
+
+
+    # https://www.highcharts.com/demo
+    def chartConfigurationWithSelectedIndex(self, selectedIndex):
+        if selectedIndex ==  0: return AAOptionsProComposer.sankeyChart
+        elif selectedIndex ==  1: return AAOptionsProComposer.variablepieChart
+        elif selectedIndex ==  2: return AAOptionsProComposer.treemapWithLevelsData
+        elif selectedIndex ==  3: return AAOptionsProComposer.variwideChart
+        elif selectedIndex ==  4: return AAOptionsProComposer.sunburstChart
+        elif selectedIndex ==  5: return AAOptionsProComposer.dependencywheelChart
+        elif selectedIndex ==  6: return AAOptionsProComposer.heatmapChart
+        elif selectedIndex ==  7: return AAOptionsProComposer.packedbubbleChart
+        elif selectedIndex ==  8: return AAOptionsProComposer.packedbubbleSplitChart
+        elif selectedIndex ==  9: return AAOptionsProComposer.vennChart
+        elif selectedIndex == 10: return AAOptionsProComposer.dumbbellChart
+        elif selectedIndex == 11: return AAOptionsProComposer.lollipopChart
+        elif selectedIndex == 12: return AAOptionsProComposer.streamgraphChart
+        elif selectedIndex == 13: return AAOptionsProComposer.columnpyramidChart
+        elif selectedIndex == 14: return AAOptionsProComposer.tilemapChart
+        elif selectedIndex == 15: return AAOptionsProComposer.treemapWithColorAxisData
+        elif selectedIndex == 16: return AAOptionsProComposer.drilldownTreemapChart
+        elif selectedIndex == 17: return AAOptionsProComposer.xrangeChart
+        elif selectedIndex == 18: return AAOptionsProComposer.vectorChart
+        elif selectedIndex == 19: return AAOptionsProComposer.bellcurveChart
+        elif selectedIndex == 20: return AAOptionsProComposer.timelineChart
+        elif selectedIndex == 21: return AAOptionsProComposer.itemChart
+        elif selectedIndex == 22: return AAOptionsProComposer.windbarbChart
+        elif selectedIndex == 23: return AAOptionsProComposer.networkgraphChart
+        elif selectedIndex == 24: return AAOptionsProComposer.wordcloudChart
+        elif selectedIndex == 25: return AAOptionsProComposer.eulerChart
+        elif selectedIndex == 26: return AAOptionsProComposer.organizationChart
+        elif selectedIndex == 27: return AAOptionsProComposer.arcdiagramChart1
+        elif selectedIndex == 28: return AAOptionsProComposer.arcdiagramChart2
+        elif selectedIndex == 29: return AAOptionsProComposer.arcdiagramChart3
+        elif selectedIndex == 30: return AAOptionsProComposer.flameChart
+        elif selectedIndex == 31: return AAOptionsProComposer.packedbubbleSpiralChart
+
 
 
