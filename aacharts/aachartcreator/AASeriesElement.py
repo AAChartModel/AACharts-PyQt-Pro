@@ -46,6 +46,7 @@ class AASeriesElement:
     colorByPoint: bool        #When using automatic point colors pulled from the `options.colors` collection, self option determines whether the chart should receive one color per series or one color per point.
     allowPointSelect: bool     #Allow self series' points to be selected by clicking on the markers, bars or pie slices
     zIndex: int              #Define the visual z index of the series.
+    keys: list
     size: str               #The innder size for pie chart (String | Number)
     innerSize: str           #The innder size for pie chart (String | Number)
     minSize: str             #The minimum size for a pie in response to auto margins, Only useful for pie, bubble, funnel, Pyramid (String | Number)
@@ -174,6 +175,10 @@ class AASeriesElement:
     def zIndexSet(self, prop: int):
         self.zIndex = prop
         return self
+
+    def keysSet(self, prop: list):
+        self.keys = prop
+        return self
    
     
     def sizeSet(self, prop: str):
@@ -235,43 +240,43 @@ class AASeriesElement:
 
 
 
-    def levels(self, prop: list):
+    def levelsSet(self, prop: list):
         levels = prop
         return self
 
-    def allowDrillToNode(self, prop: bool):
+    def allowDrillToNodeSet(self, prop: bool):
         allowDrillToNode = prop
         return self
 
-    def xAxis(self, prop: int):
+    def xAxisSet(self, prop: int):
         xAxis = prop
         return self
 
-    def baseSeries(self, prop: int):
+    def baseSeriesSet(self, prop: int):
         baseSeries = prop
         return self
 
-    def nodes(self, prop: list):
+    def nodesSet(self, prop: list):
         nodes = prop
         return self
 
-    def nodeWidth(self, prop: float):
+    def nodeWidthSet(self, prop: float):
         nodeWidth = prop
         return self
 
-    def cursor(self, prop: str):
+    def cursorSet(self, prop: str):
         cursor = prop
         return self
 
-    def offset(self, prop: str):
+    def offsetSet(self, prop: str):
         offset = prop
         return self
 
-    def linkWeight(self, prop: int):
+    def linkWeightSet(self, prop: int):
         linkWeight = prop
         return self
 
-    def centeredLinks(self, prop: bool):
+    def centeredLinksSet(self, prop: bool):
         centeredLinks = prop
         return self
 
