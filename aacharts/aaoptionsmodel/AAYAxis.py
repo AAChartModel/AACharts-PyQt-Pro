@@ -30,6 +30,8 @@ class AAYAxis:
     allowDecimals: bool # Does the y-axis allow decimals to be displayed
     max: float # y-axis maximum
     min: float # y-axis minimum  (set to 0, there will be no negative numbers)
+    maxPadding: float  # Padding of the max value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the highest data value to appear on the edge of the plot area. When the axis' max option is set or a max extreme is set using axis.setExtremes(), the maxPadding will be ignored. Defaults to 0.01.
+    minPadding: float  # Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area.  Defaults to 0.05
     # private var minPadding: # Padding of the min value relative to the length of the axis. A padding of 0.05 will make a 100px axis 5px longer. This is useful when you don't want the lowest data value to appear on the edge of the plot area. The default is: 0.05.
     minTickInterval: int #The minimum tick interval allowed in axis values. For example on zooming in on an axis with daily data, self can be used to prevent the axis from showing hours. Defaults to the closest distance between two points on the axis.
     minorGridLineColor: str #Color of the minor, secondary grid lines.
@@ -136,6 +138,14 @@ class AAYAxis:
 
     def minSet(self, prop: float):
         self.min = prop
+        return self
+
+    def maxPaddingSet(self, prop: int):
+        self.maxPadding = prop
+        return self
+
+    def minPaddingSet(self, prop: int):
+        self.minPadding = prop
         return self
 
     def minTickIntervalSet(self, prop: int):

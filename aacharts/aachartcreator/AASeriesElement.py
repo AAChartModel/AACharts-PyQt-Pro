@@ -44,6 +44,8 @@ class AASeriesElement:
     marker: AAMarker         #Enable or disable the point marker. If null, the markers are hidden when the data is dense, and shown for more widespread data points.
     step: str               #Whether to apply steps to the line. Possible values are left, center and right.
     states: AAStates
+    showInLegend: bool        #Whether to display this particular series or series type in the legend. The default value is true for standalone series, false for linked series. Deafualt value：true
+    visible: bool              #Set the initial visibility of the series. Deafualt value：true
     colorByPoint: bool        #When using automatic point colors pulled from the `options.colors` collection, self option determines whether the chart should receive one color per series or one color per point.
     allowPointSelect: bool     #Allow self series' points to be selected by clicking on the markers, bars or pie slices
     zIndex: int              #Define the visual z index of the series.
@@ -163,6 +165,14 @@ class AASeriesElement:
     
     def statesSet(self, prop: AAStates):
         self.states = prop
+        return self
+
+    def showInLegendSet(self, prop: bool):
+        self.showInLegend = prop
+        return self
+
+    def visibleSet(self, prop: bool):
+        self.visible = prop
         return self
    
     
