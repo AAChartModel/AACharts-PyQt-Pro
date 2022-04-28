@@ -1,7 +1,7 @@
 from aacharts.aachartcreator.AASeriesElement import AASeriesElement
 from aacharts.aaenum.AAEnum import AAChartType
 from aacharts.aaoptionsmodel.AAChart import AAChart
-from aacharts.aaoptionsmodel.AADataLabels import AADataLabels
+from aacharts.aaoptionsmodel.AADataLabels import AADataLabels, AAFilter
 from aacharts.aaoptionsmodel.AALegend import AALegend
 from aacharts.aaoptionsmodel.AAOptions import AAOptions
 from aacharts.aaoptionsmodel.AASubtitle import AASubtitle
@@ -1021,10 +1021,10 @@ class AAOptionsProComposer:
                 .dataLabelsSet(AADataLabels()
                     .enabledSet(True)
                     .formatSet("{point.name")
-                    # .filterSet(AAFilter()
-                    #     .propertySet("y")
-                    #     .operatorSet(">")
-                    #     .valueSet(250))
+                    .filterSet(AAFilter()
+                        .propertySet("y")
+                        .operatorSet(">")
+                        .valueSet(250))
                     .styleSet(AAStyle()
                         .colorSet(AAColor.black)
                         .textOutlineSet("none")
