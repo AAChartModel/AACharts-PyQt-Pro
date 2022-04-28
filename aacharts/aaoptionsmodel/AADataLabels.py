@@ -58,16 +58,20 @@ class AADataLabels:
     crop: bool
     inside: bool
     overflow: str
-    filter: AAFilter
     softConnector: bool
-    textPath: map
-    filter: map
     connectorColor: str
     connectorPadding: float
     connectorShape: str
     connectorWidth: float
     crookDistance: str
     alignTo: str
+
+    filter: AAFilter
+    textPath: AATextPath
+    linkTextPath: AATextPath
+    padding: float #When either the borderWidth or the backgroundColor is set, this is the padding within the box. Defaults to 5.
+    nodeFormat: str #The format string specifying what to show for nodes in the sankey diagram. By default the nodeFormatter returns {point.name}. Defaults to undefined.
+
 
     def enabledSet(self, prop: bool):
         self.enabled = prop
@@ -173,25 +177,10 @@ class AADataLabels:
     def overflowSet(self, prop: str):
         self.overflow = prop
         return self
-
-    def filterSet(self, prop: AAFilter):
-        self.filter = prop
-        return self
     
     def softConnectorSet(self, prop: bool):
         self.softConnector = prop
         return self
-   
-    
-    def textPathSet(self, prop: map):
-        self.textPath = prop
-        return self
-   
-    
-    def filterSet(self, prop: map):
-        self.filter = prop
-        return self
-   
     
     def connectorColorSet(self, prop: str):
         self.connectorColor = prop
@@ -222,7 +211,25 @@ class AADataLabels:
         self.alignTo = prop
         return self
 
+    def filterSet(self, prop: AAFilter):
+        self.filter = prop
+        return self
 
+    def textPathSet(self, prop: map):
+        self.textPath = prop
+        return self
+
+    def linkTextPathSet(self, prop: AATextPath):
+        self.linkTextPath = prop
+        return self
+
+    def paddingSet(self, prop: float):
+        self.padding = prop
+        return self
+
+    def nodeFormatSet(self, prop: str):
+        self.nodeFormat = prop
+        return self
   
  
 
