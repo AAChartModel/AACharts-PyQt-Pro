@@ -12,6 +12,7 @@ from aacharts.aaoptionsmodelpro.AALayoutAlgorithm import AALayoutAlgorithm
 from aacharts.aaoptionsmodelpro.AALevelsElement import AALevelsElement, AAColorVariation
 from aacharts.aaoptionsmodelpro.AAPackedbubble import AAPackedbubble
 from aacharts.aaoptionsmodelpro.AATreemap import AATreemap
+from aacharts.aatool.AAStringPurer import AAStringPurer
 from demo.AAOptionsData import AAOptionsData
 from aacharts.aaoptionsmodel.AAShadow import AAShadow
 from aacharts.aaoptionsmodel.AAZonesElement import AAZonesElement
@@ -800,9 +801,9 @@ class AAOptionsProComposer:
               .textSet("欧拉图和韦恩图的关系"))
     .tooltipSet(AATooltip()
                 .enabledSet(True)
-                .headerFormatSet("<span style=\"color:{point.color}\">○</span>" +
-                                  "<span style=\"font-size: 14px\"> {point.point.name}</span><br/>")
-                .pointFormatSet("{point.description}<br><span style=\"font-size: 10px\">Source: Wikipedia</span>"))
+                .headerFormatSet(AAStringPurer.pureJSString("<span style=\"color:{point.color}\">○</span>" +
+                                  "<span style=\"font-size: 14px\"> {point.point.name}</span><br/>"))
+                .pointFormatSet(AAStringPurer.pureJSString("{point.description}<br><span style=\"font-size: 10px\">Source: Wikipedia</span>")))
     .seriesSet([
         AASeriesElement()
         .dataSet(AAOptionsData.eulerData()),
