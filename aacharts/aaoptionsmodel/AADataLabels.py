@@ -3,6 +3,38 @@ from aacharts.aaenum.AAEnum import AAChartAlignType, AAChartVerticalAlignType
 from aacharts.aaoptionsmodel.AAStyle import AAStyle
 from aacharts.aatool.AAStringPurer import AAStringPurer
 
+class AAFilter:
+    property: str
+    operator: str
+    value: float
+    
+    def propertySet(self, prop: str):
+        property = prop
+        return self
+    
+    def operatorSet(self, prop: str):
+        operator = prop
+        return self
+    
+    def valueSet(self, prop: float):
+        value = prop
+        return self
+
+
+class AATextPath: 
+    enabled: bool
+    attributes: map
+    value: float
+    
+    def enabledSet(self, prop: bool):
+        enabled = prop
+        return self
+    
+    def attributesSet(self, prop: map):
+        attributes = prop
+        return self
+
+
 
 class AADataLabels:
     enabled: bool = True
@@ -26,6 +58,7 @@ class AADataLabels:
     crop: bool
     inside: bool
     overflow: str
+    filter: AAFilter
     softConnector: bool
     textPath: map
     filter: map
@@ -140,7 +173,10 @@ class AADataLabels:
     def overflowSet(self, prop: str):
         self.overflow = prop
         return self
-   
+
+    def filterSet(self, prop: AAFilter):
+        self.filter = prop
+        return self
     
     def softConnectorSet(self, prop: bool):
         self.softConnector = prop
