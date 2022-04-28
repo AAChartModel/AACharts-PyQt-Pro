@@ -255,43 +255,43 @@ class AASeriesElement:
 
 
     def levelsSet(self, prop: list):
-        levels = prop
+        self.levels = prop
         return self
 
     def allowDrillToNodeSet(self, prop: bool):
-        allowDrillToNode = prop
+        self.allowDrillToNode = prop
         return self
 
     def xAxisSet(self, prop: int):
-        xAxis = prop
+        self.xAxis = prop
         return self
 
     def baseSeriesSet(self, prop: int):
-        baseSeries = prop
+        self.baseSeries = prop
         return self
 
     def nodesSet(self, prop: list):
-        nodes = prop
+        self.nodes = prop
         return self
 
     def nodeWidthSet(self, prop: float):
-        nodeWidth = prop
+        self.nodeWidth = prop
         return self
 
     def cursorSet(self, prop: str):
-        cursor = prop
+        self.cursor = prop
         return self
 
     def offsetSet(self, prop: str):
-        offset = prop
+        self.offset = prop
         return self
 
     def linkWeightSet(self, prop: int):
-        linkWeight = prop
+        self.linkWeight = prop
         return self
 
     def centeredLinksSet(self, prop: bool):
-        centeredLinks = prop
+        self.centeredLinks = prop
         return self
 
 
