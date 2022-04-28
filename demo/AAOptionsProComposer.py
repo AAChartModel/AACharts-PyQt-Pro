@@ -245,50 +245,50 @@ class AAOptionsProComposer:
 # # https:#jshare.com.cn/demos/hhhhiz
   @staticmethod
   def heatmapChart():
-    return (AAOptions())
-    # .chartSet(AAChart()
-    #           .typeSet(AAChartType.heatmap))
-    # .titleSet(AATitle()
-    #           .textSet("Sales per employee per weekday"))
-    # .xAxisSet(AAXAxis()
-    #           .visibleSet(True)
-    #           .categoriesSet([
-    #               "Alexander", "Marie", "Maximilian", "Sophia",
-    #               "Lukas", "Maria", "Leon", "Anna", "Tim", "Laura"
-    #                          ]))
-    # .yAxisSet(AAYAxis()
-    #           .visibleSet(True)
-    #           .categoriesSet(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"])
-    #           .titleSet(AATitle()
-    #                     .textSet("")))
-    # .colorAxisSet(AAColorAxis()
-    #               .minSet(0)
-    #               .minColorSet(AAColor.white)
-    #               .maxColorSet("#7cb5ec"))
-    # .legendSet(AALegend()
-    #            .enabledSet(True)
-    #            .alignSet(AAChartAlignType.right)
-    #            .layoutSet(AAChartLayoutType.vertical)
-    #            .verticalAlignSet(AAChartVerticalAlignType.top)
-    #            .ySet(25))
-    # .tooltipSet(AATooltip()
-    #             .enabledSet(True)
+    return (AAOptions()
+        .chartSet(AAChart()
+              .typeSet(AAChartType.heatmap))
+    .titleSet(AATitle()
+              .textSet("Sales per employee per weekday"))
+    .xAxisSet(AAXAxis()
+              .visibleSet(True)
+              .categoriesSet([
+                  "Alexander", "Marie", "Maximilian", "Sophia",
+                  "Lukas", "Maria", "Leon", "Anna", "Tim", "Laura"
+                             ]))
+    .yAxisSet(AAYAxis()
+              .visibleSet(True)
+              .categoriesSet(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"])
+              .titleSet(AATitle()
+                        .textSet("")))
+    .colorAxisSet(AAColorAxis()
+                  .minSet(0)
+                  .minColorSet(AAColor.white)
+                  .maxColorSet("#7cb5ec"))
+    .legendSet(AALegend()
+               .enabledSet(True)
+               .alignSet(AAChartAlignType.right)
+               .layoutSet(AAChartLayoutType.vertical)
+               .verticalAlignSet(AAChartVerticalAlignType.top)
+               .ySet(25))
+    .tooltipSet(AATooltip()
+                .enabledSet(True)
         #         .formatterSet("""
         # AAJSFunc(function ()():
         #             return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
         #                 this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>'
         #         ))
         #         """)
-        #         )
-    # .seriesSet([
-    #     AASeriesElement()
-    #     .nameSet("Sales")
-    #     .borderWidthSet(1)
-    #     .dataSet(AAOptionsData.heatmapData())
-    #     .dataLabelsSet(AADataLabels()
-    #                    .enabledSet(True)
-    #                    .colorSet(AAColor.red))
-    #            ])
+                )
+    .seriesSet([
+        AASeriesElement()
+        .nameSet("Sales")
+        .borderWidthSet(1)
+        .dataSet(AAOptionsData.heatmapData())
+        .dataLabelsSet(AADataLabels()
+                       .enabledSet(True)
+                       .colorSet(AAColor.red))
+               ]))
 
 # # https:#www.highcharts.com.cn/demo/highcharts/packed-bubble
   @staticmethod
