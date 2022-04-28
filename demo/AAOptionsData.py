@@ -115,33 +115,6 @@ class AAOptionsData:
     def sunburst2Data():
         return AAOptionsData.getJsonDataWithJsonFileName("sunburst2Data")
 
-    #     public class var xrangeData: [Any] {
-    #     func getSingleGroupCategoryDataElementArrayWithY(_ y: Int) -> [Any] {
-    #         var dataArr = [Any]()
-            
-    #         var x = 0
-    #         var x2 = x + Int(arc4random()) % 10
-    #         for _ in 0 ..< 50 {
-    #             var dataElementDic = [String:Any]()
-    #             dataElementDic["x"] = x
-    #             dataElementDic["x2"] = x2
-    #             dataElementDic["y"] = y
-    #             dataArr.append(dataElementDic)
-    #             x = x2 + Int(arc4random()) % 1000
-    #             x2 = x + Int(arc4random()) % 2000
-    #         }
-    #         return dataArr
-    #     }
-        
-    #     var dataArr = [Any]()
-    #     for y in 0 ..< 20 {
-    #         let data = getSingleGroupCategoryDataElementArrayWithY(y)
-    #         for dataElement in data {
-    #             dataArr.append(dataElement)
-    #         }
-    #     }
-    #     return dataArr
-    # }
 
     @staticmethod
     def getSingleGroupCategoryDataElementArrayWithY(y: int):
