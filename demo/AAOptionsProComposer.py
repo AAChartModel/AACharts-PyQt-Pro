@@ -1,7 +1,7 @@
 from aacharts.aachartcreator.AASeriesElement import AASeriesElement
 from aacharts.aaenum.AAEnum import AAChartType
 from aacharts.aaoptionsmodel.AAChart import AAChart
-from aacharts.aaoptionsmodel.AADataLabels import AADataLabels, AAFilter
+from aacharts.aaoptionsmodel.AADataLabels import AADataLabels, AAFilter, AATextPath
 from aacharts.aaoptionsmodel.AALegend import AALegend
 from aacharts.aaoptionsmodel.AAOptions import AAOptions
 from aacharts.aaoptionsmodel.AASubtitle import AASubtitle
@@ -901,13 +901,13 @@ class AAOptionsProComposer:
                     .lineWidthSet(2)
                     .lineColorSet(AAColor.white))
                 .centeredLinksSet(True)
-            #     .dataLabelsSet(AADataLabels()
-            #         .formatSet("{point.fromNode.name →():point.toNode.name")
-            #         .nodeFormatSet("{point.name")
-            #         .colorSet(AAColor.black)
-            #         # .linkTextPathSet(AATextPath()
-            #         #     .enabledSet(True))
-            # )
+                .dataLabelsSet(AADataLabels()
+                    .formatSet("{point.fromNode.name →():point.toNode.name")
+                    # .nodeFormatSet("{point.name")
+                    .colorSet(AAColor.black)
+                    # .linkTextPathSet(AATextPath()
+                    #     .enabledSet(True))
+            )
                 .dataSet(AAOptionsData.arcdiagram2Data())
             ]))
 
@@ -924,14 +924,14 @@ class AAOptionsProComposer:
                 .keysSet(["from", "to", "weight", ])
 #                .centerPosSet("50%")
                 .typeSet(AAChartType.arcdiagram)
-            #     .dataLabelsSet(AADataLabels()
-            #         .alignSet(AAChartAlignType.right)
-            #         .xSet(-20)
-            #         .ySet(-2)
-            #         .colorSet("#333333")
-            #         .overflowSet("allow")
-            #         .paddingSet(0)
-            # )
+                .dataLabelsSet(AADataLabels()
+                    .alignSet(AAChartAlignType.right)
+                    .xSet(-20)
+                    .ySet(-2)
+                    .colorSet("#333333")
+                    .overflowSet("allow")
+                    .paddingSet(0)
+            )
                 .offsetSet("60%")
                 .dataSet(AAOptionsData.arcdiagram3Data())
             ]))
@@ -986,14 +986,14 @@ class AAOptionsProComposer:
                 .levelsSet([
                     AALevelsElement()
                         .levelSet(1)
-#                        .levelIsConstantSet(False)
+                       # .levelIsConstantSet(False)
                         .dataLabelsSet(AADataLabels()
                             .enabledSet(False))
                     ])
                 .dataLabelsSet(AADataLabels()
-                    # .textPathSet(AATextPath()
-                    #     .attributesSet({"dy": 5)
-                    #     .enabledSet(True))
+                    .textPathSet(AATextPath()
+                        .attributesSet({"dy": 5})
+                        .enabledSet(True))
                                )
             ])
         .tooltipSet(AATooltip()
