@@ -15,8 +15,8 @@ class MainTreeWidget(QtWidgets.QWidget):
         super().__init__()
 
         self.chartView = PYChartView()
-        testChartModel = self.configureColorfulBarChart()
-        self.chartView.aa_drawChartWithChartModel(testChartModel)
+        testChartModel = AAOptionsProComposer.sankeyChart()
+        self.chartView.aa_drawChartWithChartOptions(testChartModel)
 
 
         # https://gist.github.com/fredrikaverpil/1fa4f3360ffdb1e69507
@@ -115,55 +115,6 @@ class MainTreeWidget(QtWidgets.QWidget):
     @QtCore.Slot()
     def magic(self):
         self.text.setText(random.choice(self.hello))
-
-    def configureColorfulBarChart(self):
-        colorsNameArr = [
-            "red",
-            "orange",
-            "yellow",
-            "green",
-            "cyan",
-            "blue",
-            "purple",
-            "gray",
-            "darkGray",
-            "lightGray",
-            "magenta",
-            "brown",
-            "black"
-        ]
-
-        colorsArr = [
-            AAColor.red,
-            AAColor.orange,
-            AAColor.yellow,
-            AAColor.green,
-            AAColor.cyan,
-            AAColor.blue,
-            AAColor.purple,
-            AAColor.gray,
-            AAColor.darkGray,
-            AAColor.lightGray,
-            AAColor.magenta,
-            AAColor.brown,
-            AAColor.black
-        ]
-
-        return (AAChartModel()
-            .chartTypeSet(AAChartType.bar)
-            .animationTypeSet(AAChartAnimationType.bounce)
-            .titleSet("Colorful Chart")
-            .subtitleSet("use AAColor to get color string")
-            .dataLabelsEnabledSet(False)
-            .categoriesSet(colorsNameArr)
-            .colorsThemeSet(colorsArr)
-            .stackingSet(AAChartStackingType.percent)
-            .seriesSet([
-            AASeriesElement()
-                .nameSet("Tokyo")
-                .dataSet([7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6])
-                .colorByPointSet(True)
-        ]))
 
 
     # https://www.highcharts.com/demo
