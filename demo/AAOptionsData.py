@@ -115,30 +115,27 @@ class AAOptionsData:
     def sunburst2Data():
         return AAOptionsData.getJsonDataWithJsonFileName("sunburst2Data")
 
-
-    @staticmethod
-    def getSingleGroupCategoryDataElementArrayWithY(y: int):
-        dataArr = list()
-        x = 0
-        x2 = x + random.randint(0, 9)
-
-        for num in range(0, 50):
-            dataElementDic = dict()
-            dataElementDic["x"] = x
-            dataElementDic["x2"] = x2
-            dataElementDic["y"] = y
-            dataArr.append(dataElementDic)
-            x = x2 + random.randint(0, 1000) 
-            x2 = x + random.randint(0, 2000)  
-        
-        return dataArr
-
-
     @staticmethod
     def xrangeData():
+        def getSingleGroupCategoryDataElementArrayWithY(y: int):
+            dataArr = list()
+            x = 0
+            x2 = x + random.randint(0, 9)
+
+            for num in range(0, 50):
+                dataElementDic = dict()
+                dataElementDic["x"] = x
+                dataElementDic["x2"] = x2
+                dataElementDic["y"] = y
+                dataArr.append(dataElementDic)
+                x = x2 + random.randint(0, 1000) 
+                x2 = x + random.randint(0, 2000) 
+                 
+            return dataArr
+
         dataArr = list()
         for y in range(0, 20):
-            data = AAOptionsData.getSingleGroupCategoryDataElementArrayWithY(y)
+            data = getSingleGroupCategoryDataElementArrayWithY(y)
             for dataElement in data:
                 dataArr.append(dataElement)
 
