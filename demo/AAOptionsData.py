@@ -124,6 +124,9 @@ class AAOptionsData:
         return AAOptionsData.getJsonDataWithJsonFileName("vectorData")
 
 
+    # to do
+    # https://blog.csdn.net/m0_37693335/article/details/81474995
+    # python 相对路径打开文件夹
     @staticmethod
     def getJsonDataWithJsonFileName(jsonFileName: str):
         # /Users/admin/Documents/GitHub/AACharts-PyQt-Pro/demo/datajson/arcdiagram1Data.json
