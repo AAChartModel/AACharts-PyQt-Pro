@@ -20,29 +20,29 @@ class AAPackedbubble:
     useSimulation: bool
     
     def minSizeSet(self, prop: str):
-        minSize = prop
+        self.minSize = prop
         return self
     
     def maxSizeSet(self, prop: str):
-        maxSize = prop
+        self.maxSize = prop
         return self
     
     def zMinSet(self, prop: any):
-        zMin = prop
+        self.zMin = prop
         return self
     
     def zMaxSet(self, prop: any):
-        zMax = prop
+        self.zMax = prop
         return self
     
     def layoutAlgorithmSet(self, prop: AALayoutAlgorithm):
-        layoutAlgorithm = prop
+        self.layoutAlgorithm = prop
         return self
     
     def dataLabelsSet(self, prop: AADataLabels):
-        dataLabels = prop
+        self.dataLabels = prop
         return self
     
     def useSimulationSet(self, prop: bool):
-        useSimulation = prop
+        self.useSimulation = prop
         return self

@@ -9,15 +9,15 @@ class AAFilter:
     value: float
     
     def propertySet(self, prop: str):
-        property = prop
+        self.property = prop
         return self
     
     def operatorSet(self, prop: str):
-        operator = prop
+        self.operator = prop
         return self
     
     def valueSet(self, prop: float):
-        value = prop
+        self.value = prop
         return self
 
 
@@ -27,11 +27,11 @@ class AATextPath:
     value: float
     
     def enabledSet(self, prop: bool):
-        enabled = prop
+        self.enabled = prop
         return self
     
     def attributesSet(self, prop: map):
-        attributes = prop
+        self.attributes = prop
         return self
 
 
