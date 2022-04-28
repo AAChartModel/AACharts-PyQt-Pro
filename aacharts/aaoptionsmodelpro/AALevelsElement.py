@@ -14,11 +14,11 @@ class AAColorVariation:
     to: any
 
     def keySet(self, prop: str):
-        key = prop
+        self.key = prop
         return self
 
     def toSet(self, prop: any):
-        to = prop
+        self.to = prop
         return self
 
 
@@ -36,47 +36,47 @@ class AALevelsElement:
     height: float
     
     def borderColorSet(self, prop: str):
-        borderColor = prop
+        self.borderColor = prop
         return self
     
     def borderDashStyleSet(self, prop: str):
-        borderDashStyle = prop
+        self.borderDashStyle = prop
         return self
     
     def borderWidthSet(self, prop: any):
-        borderWidth = prop
+        self.borderWidth = prop
         return self
     
     def colorSet(self, prop: str):
-        color = prop
+        self.color = prop
         return self
     
     def colorByPointSet(self, prop: any):
-        colorByPoint = prop
+        self.colorByPoint = prop
         return self
     
     def dataLabelsSet(self, prop: AADataLabels):
-        dataLabels = prop
+        self.dataLabels = prop
         return self
     
     def layoutAlgorithmSet(self, prop: str):
-        layoutAlgorithm = prop
+        self.layoutAlgorithm = prop
         return self
     
     def layoutStartingDirectionSet(self, prop: str):
-        layoutStartingDirection = prop
+        self.layoutStartingDirection = prop
         return self
     
     def levelSet(self, prop: any):
-        level = prop
+        self.level = prop
         return self
     
     def colorVariationSet(self, prop: AAColorVariation):
-        colorVariation = prop
+        self.colorVariation = prop
         return self
     
     def heightSet(self, prop: float):
-        height = prop
+        self.height = prop
         return self
     
 

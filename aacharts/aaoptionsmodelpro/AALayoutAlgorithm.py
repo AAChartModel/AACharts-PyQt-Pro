@@ -15,21 +15,21 @@ class AALayoutAlgorithm:
     parentNodeLimit: bool
     
     def gravitationalConstantSet(self, prop: any):
-        gravitationalConstant = prop
+        self.gravitationalConstant = prop
         return self
     
     def splitSeriesSet(self, prop: bool):
-        splitSeries = prop
+        self.splitSeries = prop
         return self
     
     def seriesInteractionSet(self, prop: bool):
-        seriesInteraction = prop
+        self.seriesInteraction = prop
         return self
     
     def dragBetweenSeriesSet(self, prop: bool):
-        dragBetweenSeries = prop
+        self.dragBetweenSeries = prop
         return self
     
     def parentNodeLimitSet(self, prop: bool):
-        parentNodeLimit = prop
+        self.parentNodeLimit = prop
         return self

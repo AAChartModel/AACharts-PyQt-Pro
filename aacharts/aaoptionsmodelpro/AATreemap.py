@@ -12,10 +12,10 @@ class AATreemap:
     allowTraversingTree: bool
     
     def layoutAlgorithmSet(self, prop: str):
-        layoutAlgorithm = prop
+        self.layoutAlgorithm = prop
         return self
     
     def allowTraversingTreeSet(self, prop: bool):
-        allowTraversingTree = prop
+        self.allowTraversingTree = prop
         return self
 

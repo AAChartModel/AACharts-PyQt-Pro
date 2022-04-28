@@ -14,19 +14,19 @@ class AAColorAxis:
     dataClasses: list
     
     def minSet(self, prop: any):
-        min = prop
+        self.min = prop
         return self
     
     def minColorSet(self, prop: str):
-        minColor = prop
+        self.minColor = prop
         return self
     
     def maxColorSet(self, prop: str):
-        maxColor = prop
+        self.maxColor = prop
         return self
     
     def dataClassesSet(self, prop: list):
-        dataClasses = prop
+        self.dataClasses = prop
         return self
 
 
@@ -37,18 +37,18 @@ class AADataClassesElement:
     name: str
     
     def fromSet(self, prop: any):
-        _from = prop
+        self._from = prop
         return self
     
     def toSet(self, prop: any):
-        to = prop
+        self.to = prop
         return self
     
     def colorSet(self, prop: str):
-        color = prop
+        self.color = prop
         return self
     
     def nameSet(self, prop: str):
-        name = prop
+        self.name = prop
         return self
 
