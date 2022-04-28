@@ -22,6 +22,7 @@ class MainTreeWidget(QtWidgets.QWidget):
         # https://gist.github.com/fredrikaverpil/1fa4f3360ffdb1e69507
         folderTree = QtWidgets.QTreeWidget()
 
+
         sectionTitleArr = [
             "Pro Types Chart --- Pro类型图表",
         ]
@@ -68,18 +69,15 @@ class MainTreeWidget(QtWidgets.QWidget):
             sectionTitleStr = sectionTitleArr[sectionIndex]
             sectionIndexStr = f"{sectionIndex + 1}"
             sectionRoot = QtWidgets.QTreeWidgetItem(folderTree, [sectionIndexStr + "  " + sectionTitleStr])
-            sectionRoot.setData(1, QtCore.Qt.EditRole,
-                            sectionIndexStr)
+            sectionRoot.setData(1, QtCore.Qt.EditRole, sectionIndexStr)
 
             singleSectionChartTypeTitleArr = chartTypeTitleArr[sectionIndex]
             for rowIndex in range(len(singleSectionChartTypeTitleArr)):
                 rowIndexStr = f"{rowIndex + 1}"
                 chartTypeStr = singleSectionChartTypeTitleArr[rowIndex]
                 rowRoot = QtWidgets.QTreeWidgetItem(sectionRoot, [rowIndexStr + "  " + chartTypeStr])
-                rowRoot.setData(1, QtCore.Qt.EditRole,
-                                sectionIndexStr)  # Data set to column 2, which is not visible
-                rowRoot.setData(2, QtCore.Qt.EditRole,
-                             rowIndexStr)  # Data set to column 2, which is not visible
+                rowRoot.setData(1, QtCore.Qt.EditRole, sectionIndexStr)  # Data set to column 2, which is not visible
+                rowRoot.setData(2, QtCore.Qt.EditRole, rowIndexStr)  # Data set to column 2, which is not visible
 
         def printer(treeItem):
             foldername = treeItem.text(0)
@@ -99,6 +97,9 @@ class MainTreeWidget(QtWidgets.QWidget):
         folderTree.itemClicked.connect(lambda: printer(folderTree.currentItem()))
 
         folderTree.currentColumn()
+        # Qt如何使QTreeWidget始终保持展开？https://blog.csdn.net/can3981132/article/details/52273800
+        folderTree.setItemsExpandable(False)
+        folderTree.expandAll()
 
         self.layout = QtWidgets.QVBoxLayout(self)
         self.layout.addWidget(self.chartView)
@@ -110,8 +111,7 @@ class MainTreeWidget(QtWidgets.QWidget):
         foldername = treeItem.text(0)
         comment = treeItem.text(1)
         data = treeItem.text(2)
-        print
-        foldername + ': ' + comment + ' (' + data + ')'
+        print(foldername + ': ' + comment + ' (' + data + ')')
 
 
     @QtCore.Slot()
