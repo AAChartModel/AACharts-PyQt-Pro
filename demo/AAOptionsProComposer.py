@@ -230,14 +230,14 @@ class AAOptionsProComposer:
         AASeriesElement()
         .typeSet(AAChartType.dependencywheel)
         .nameSet("Dependency wheel series")
-        .keysSet(["from","to","weight"])
+        .keysSet(["from", "to", "weight"])
         .dataSet(AAOptionsData.dependencywheelData())
         .dataLabelsSet(AADataLabels()
                        .enabledSet(True)
                        .colorSet("#333")
-                       # .textPathSet(AATextPath()
-                       #              .enabledSet(True)
-                       #              .attributesSet({ "dy": 5 ))
+                       .textPathSet(AATextPath()
+                                    .enabledSet(True)
+                                    .attributesSet({"dy": 5}))
                        .distanceSet(10))
                ]))
 
@@ -273,12 +273,12 @@ class AAOptionsProComposer:
                .ySet(25))
     .tooltipSet(AATooltip()
                 .enabledSet(True)
-        #         .formatterSet("""
-        # AAJSFunc(function ()():
-        #             return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
-        #                 this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>'
-        #         ))
-        #         """)
+                .formatterSet("""
+            function () {
+                    return '<b>' + this.series.xAxis.categories[this.point.x] + '</b> sold <br><b>' +
+                        this.point.value + '</b> items on <br><b>' + this.series.yAxis.categories[this.point.y] + '</b>'
+                    }
+                """)
                 )
     .seriesSet([
         AASeriesElement()
@@ -314,10 +314,10 @@ class AAOptionsProComposer:
                                      .dataLabelsSet(AADataLabels()
                                                     .enabledSet(True)
                                                     .formatSet("{point.name")
-                                                    # .filterSet(AAFilter()
-                                                    #            .propertySet("y")
-                                                    #            .operatorSet(">")
-                                                    #            .valueSet(250))
+                                                    .filterSet(AAFilter()
+                                                               .propertySet("y")
+                                                               .operatorSet(">")
+                                                               .valueSet(250))
                                                     )))
     .seriesSet(AAOptionsSeries.packedbubbleSeries()))
 
@@ -349,10 +349,10 @@ class AAOptionsProComposer:
                                      .dataLabelsSet(AADataLabels()
                                                     .enabledSet(True)
                                                     .formatSet("{point.name")
-                                                    # .filterSet(AAFilter()
-                                                    #            .propertySet("y")
-                                                    #            .operatorSet(">")
-                                                    #            .valueSet(250))
+                                                    .filterSet(AAFilter()
+                                                               .propertySet("y")
+                                                               .operatorSet(">")
+                                                               .valueSet(250))
                                                     )))
     .seriesSet(AAOptionsSeries.packedbubbleSeries()))
 
@@ -800,10 +800,9 @@ class AAOptionsProComposer:
               .textSet("欧拉图和韦恩图的关系"))
     .tooltipSet(AATooltip()
                 .enabledSet(True)
-                # .headerFormatSet([NSString stringWithFormat:"%%",
-                #                   "<span style=""color:{point.color"">\u2022</span>",
-                #                   "<span style=""font-size: 14px"">():point.point.name</span><br/>"])
-                .pointFormatSet("{point.description<br><span style=""font-size: 10px"">Source: Wikipedia</span>"))
+                .headerFormatSet("<span style=\"color:{point.color}\">○</span>" +
+                                  "<span style=\"font-size: 14px\"> {point.point.name}</span><br/>")
+                .pointFormatSet("{point.description}<br><span style=\"font-size: 10px\">Source: Wikipedia</span>"))
     .seriesSet([
         AASeriesElement()
         .dataSet(AAOptionsData.eulerData()),
@@ -874,11 +873,11 @@ class AAOptionsProComposer:
                 .nameSet("Train connections")
                 .linkWeightSet(1)
                 .centeredLinksSet(True)
-                # .dataLabelsSet(AADataLabels()
-                #     .rotationSet(90)
-                #     .ySet(30)
-                #     .alignSet(AAChartAlignType.left)
-                #     .colorSet(AAColor.black))
+                .dataLabelsSet(AADataLabels()
+                    .rotationSet(90)
+                    .ySet(30)
+                    .alignSet(AAChartAlignType.left)
+                    .colorSet(AAColor.black))
                 .offsetSet("65%")
                 .dataSet(AAOptionsData.arcdiagram1Data())
             ]))
@@ -903,10 +902,10 @@ class AAOptionsProComposer:
                 .centeredLinksSet(True)
                 .dataLabelsSet(AADataLabels()
                     .formatSet("{point.fromNode.name →():point.toNode.name")
-                    # .nodeFormatSet("{point.name")
+                    .nodeFormatSet("{point.name")
                     .colorSet(AAColor.black)
-                    # .linkTextPathSet(AATextPath()
-                    #     .enabledSet(True))
+                    .linkTextPathSet(AATextPath()
+                        .enabledSet(True))
             )
                 .dataSet(AAOptionsData.arcdiagram2Data())
             ]))
