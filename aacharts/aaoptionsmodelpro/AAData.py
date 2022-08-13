@@ -1,6 +1,8 @@
 from ast import Str, parse
 import csv
 
+from aacharts.aatool.AAStringPurer import AAStringPurer
+
 
 class AAData:
     csv: str
@@ -11,6 +13,6 @@ class AAData:
         return self
 
     def parsedSet(self, prop: str):
-        self.parsed = prop
+        self.parsed = AAStringPurer.pureJSString(prop)
         return self 
         

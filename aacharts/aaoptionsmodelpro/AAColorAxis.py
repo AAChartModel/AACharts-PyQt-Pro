@@ -7,11 +7,22 @@
 #
 # import UIKit
 
+from ast import Num
+
+from aacharts.aaoptionsmodel.AALabels import AALabels
+
+
 class AAColorAxis:
     min: any
     minColor: str
     maxColor: str
     dataClasses: list
+    stops: list
+    max: Num
+    startOnTick: bool
+    endOnTick: bool
+    labels: AALabels
+    
     
     def minSet(self, prop: any):
         self.min = prop
@@ -27,6 +38,26 @@ class AAColorAxis:
     
     def dataClassesSet(self, prop: list):
         self.dataClasses = prop
+        return self
+
+    def stopsSet(self, prop: list):
+        self.stops = prop
+        return self
+
+    def maxSet(self, prop: Num):
+        self.max = prop
+        return self
+
+    def startOnTickSet(self, prop: bool):
+        self.startOnTick = prop
+        return self
+
+    def endOnTickSet(self, prop: bool):
+        self.endOnTick = prop
+        return self
+
+    def labelsSet(self, prop: AALabels):
+        self.labels = prop
         return self
 
 

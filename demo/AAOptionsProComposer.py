@@ -9,6 +9,8 @@ from aacharts.aaoptionsmodel.AASubtitle import AASubtitle
 from aacharts.aaoptionsmodel.AATitle import AATitle
 from aacharts.aaoptionsmodel.AATooltip import AATooltip
 from aacharts.aaoptionsmodelpro.AAColorAxis import AAColorAxis, AADataClassesElement
+from aacharts.aaoptionsmodelpro.AAData import AAData
+from aacharts.aaoptionsmodelpro.AAHeatmap import AAHeatmap
 from aacharts.aaoptionsmodelpro.AALayoutAlgorithm import AALayoutAlgorithm
 from aacharts.aaoptionsmodelpro.AALevelsElement import AALevelsElement, AAColorVariation
 from aacharts.aaoptionsmodelpro.AAPackedbubble import AAPackedbubble
@@ -16,6 +18,7 @@ from aacharts.aaoptionsmodelpro.AASolidgauge import AASolidgauge
 from aacharts.aaoptionsmodelpro.AASolidgaugeDataElement import AASolidgaugeDataElement
 from aacharts.aaoptionsmodelpro.AATreemap import AATreemap
 from aacharts.aatool.AAStringPurer import AAStringPurer
+from demo.AAOptionsCSV import AAOptionsCSV
 from demo.AAOptionsData import AAOptionsData
 from aacharts.aaoptionsmodel.AAShadow import AAShadow
 from aacharts.aaoptionsmodel.AAZonesElement import AAZonesElement
@@ -1211,4 +1214,78 @@ class AAOptionsProComposer:
               .ySet(50)
           ])
       ]))
+
+  @staticmethod
+  def largeDataHeatmapChart():
+      csvMap: map = (AAOptionsCSV.csvData())
+      csvStr = csvMap["csv"]
+      return (AAOptions()
+              .dataSet(AAData()
+                       .csvSet(AAStringPurer.pureJSString2(csvStr))
+      .parsedSet("""
+      function () {
+          start = +new Date();
+                 }
+      """))
+      .chartSet(AAChart()
+                .typeSet(AAChartType.heatmap)
+                .marginSet([60, 10, 80, 50]))
+      .titleSet(AATitle()
+                .textSet("大型热力图")
+                .alignSet(AAChartAlignType.left)
+                .xSet(40))
+      .subtitleSet(AASubtitle()
+                   .textSet("2013每天每小时的热力变化")
+                   .alignSet(AAChartAlignType.left)
+                   .xSet(40))
+      .xAxisSet(AAXAxis()
+                .typeSet(AAChartAxisType.datetime)
+                .minSet(1356998400000)
+                .maxSet(1388534400000)
+                .labelsSet(AALabels()
+                           .alignSet(AAChartAlignType.left)
+                           .xSet(5)
+                           .ySet(14)
+                           .formatSet("{value:%B}"))
+                #            .showLastLabelSet(False)
+                .tickLengthSet(16))
+      .yAxisSet(AAYAxis()
+                .titleSet(AATitle()
+                          .textSet(None))
+                .labelsSet(AALabels()
+                           .formatSet("{value}:00"))
+                .minPaddingSet(0)
+                .maxPaddingSet(0)
+                .startOnTickSet(False)
+                .endOnTickSet(False)
+                .tickPositionsSet([0, 6, 12, 18, 24])
+                .tickWidthSet(1)
+                .minSet(0)
+                .maxSet(23)
+                .reversedSet(True))
+      .colorAxisSet(AAColorAxis()
+                    .stopsSet([
+          [0, "#3060cf", ],
+          [0.5, "#fffbbc", ],
+          [0.9, "#c4463a", ],
+          [1, "#c4463a", ]
+      ])
+                    .minSet(-15)
+                    .maxSet(25)
+                    .startOnTickSet(False)
+                    .endOnTickSet(False)
+                    .labelsSet(AALabels()
+                               .formatSet("{value}℃"))
+                    )
+      .seriesSet([
+          AAHeatmap()
+          .borderWidthSet(0)
+          .colsizeSet(86400000)
+          .tooltipSet(AATooltip()
+                      .headerFormatSet("Temperature")
+                      #                    .pointFormatSet("{point.x:%e %b, %Y} {point.y}:00: {point.value} ℃")
+                      )
+          .turboThresholdSet(1.7976931348623157e+308)
+      ]))
+
 

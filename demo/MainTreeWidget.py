@@ -60,7 +60,8 @@ class MainTreeWidget(QtWidgets.QWidget):
              "arcdiagramChart3---弧形图3",
              "flameChart---火焰🔥图",
              "packedbubbleSpiralChart---渐进变化的气泡🎈图",
-             "solidgaugeChart---活动图🏃️"
+             "solidgaugeChart---活动图🏃️",
+             "largeDataHeatmapChart---大数据量热力图",
 
              ]
         ]
@@ -154,6 +155,8 @@ class MainTreeWidget(QtWidgets.QWidget):
         elif selectedIndex == 30: return AAOptionsProComposer.flameChart()
         elif selectedIndex == 31: return AAOptionsProComposer.packedbubbleSpiralChart()
         elif selectedIndex == 32: return AAOptionsProComposer.solidgaugeChart()
+        elif selectedIndex == 33: return AAOptionsProComposer.largeDataHeatmapChart()
+
 
 
 
