@@ -1,0 +1,378 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=3.0,user-scalable = no">
+             <script src="AAMaster/AAHighcharts.js"></script>
+            <script src="AAMaster/AAHighcharts-More.js"></script>
+            <script src="AAMaster/AAFunnel.js"></script>
+            <script src="AAMaster/AAEasing.js"></script>
+<!--            <script src="https://code.highcharts.com/highcharts.js"></script>-->
+<!--            <script src="https://code.highcharts.com/highcharts-more.js"></script>-->
+<!--            <script src="https://code.highcharts.com/modules/funnel.js"></script>-->
+
+            <script src="AAModules/AASankey.js"></script>
+            <script src="AAModules/AADependency-Wheel.js"></script>
+            <script src="AAModules/AAOldie.js"></script>
+            <script src="AAModules/AAVariable-Pie.js"></script>
+            <script src="AAModules/AATreemap.js"></script>
+            <script src="AAModules/AAVariwide.js"></script>
+            <script src="AAModules/AASunburst.js"></script>
+            <script src="AAModules/AAHeatmap.js"></script>
+            <script src="AAModules/AAStreamgraph.js"></script>
+            <script src="AAModules/AAVenn.js"></script>
+            <script src="AAModules/AATilemap.js"></script>
+            <script src="AAModules/AADumbbell.js"></script>
+            <script src="AAModules/AALollipop.js"></script>
+            <script src="AAModules/AAXrange.js"></script>
+            <script src="AAModules/AAVector.js"></script>
+            <script src="AAModules/AAHistogram-Bellcurve.js"></script>
+            <script src="AAModules/AATimeline.js"></script>
+            <script src="AAModules/AAItem-Series.js"></script>
+            <script src="AAModules/AAWindbarb.js"></script>
+            <script src="AAModules/AANetworkgraph.js"></script>
+            <script src="AAModules/AAWordcloud.js"></script>
+            <script src="AAModules/AASolid-Gauge.js"></script>
+            <script src="AAModules/AAPareto.js"></script>
+            <script src="AAModules/AABullet.js"></script>
+
+            <script src="AAModules/AAPattern-Fill.js"></script>
+            <script src="AAModules/AAOrganization.js"></script>
+            <script src="AAModules/AAArc-Diagram.js"></script>
+
+
+            <style>*{
+                -webkit-user-select: none;
+                user-select: none;
+            }
+                </style>
+            </head>
+    <body style="margin:0px 0px 0px 0px;">
+        <div id="container" style="width:100%; height: 100%;"></div>
+        <script>
+            // var formatter = "(function () {        var s \u003d \\\"第\\\" + \\\"\u003cb\u003e\\\" +  this.x + \\\"\u003c/b\u003e\\\" + \\\"年\\\" + \\\"\u003cbr/\u003e\\\";        var colorDot1 \u003d \\\"\u003cspan style\u003d\\\\\\\"\\\" + \\\"color:#1e90ff; font-size:13px\\\\\\\"\\\" + \\\"\u003e◉\u003c/span\u003e \\\";        var colorDot2 \u003d \\\"\u003cspan style\u003d\\\\\\\"\\\" + \\\"color:#ef476f; font-size:13px\\\\\\\"\\\" + \\\"\u003e◉\u003c/span\u003e \\\";        var s1 \u003d colorDot1  + this.points[0].series.name + \\\": \\\" + this.points[0].y + \\\"只\\\" + \\\"\u003cbr/\u003e\\\";        var s2 \u003d  colorDot2 + this.points[1].series.name + \\\": \\\" + this.points[1].y + \\\"棵\\\";        s +\u003d s1 + s2;        return s;    })";
+            // // var formatter = "(function(){vars=\\\"第\\\"+\\\"<b>\\\"+this.x+\\\"</b>\\\"+\\\"年\\\"+\\\"<br/>\\\";letcolorDot1=\\\"<spanstyle=\\\"+\\\"color:#1e90ff;font-size:13px\\\"+\\\">◉</span>\\\";letcolorDot2=\\\"<spanstyle=\\\"+\\\"color:#ef476f;font-size:13px\\\"+\\\">◉</span>\\\";lets1=colorDot1+this.points[0].series.name+\\\":\\\"+this.points[0].y+\\\"只\\\"+\\\"<br/>\\\";lets2=colorDot2+this.points[1].series.name+\\\":\\\"+this.points[1].y+\\\"棵\\\";s+=s1+s2;returns;})";
+            // // var formatter = "(    function () {        var s = \\\"第\\\" + \\\"<b>\\\" +  this.x + \\\"</b>\\\" + \\\"年\\\" + \\\"<br/>\\\";        let colorDot1 = \\\"<span style=\\\" + \\\"color:#1e90ff; font-size:13px\\\" + \\\">◉</span> \\\";        let colorDot2 = \\\"<span style=\\\" + \\\"color:#ef476f; font-size:13px\\\" + \\\">◉</span> \\\";        let s1 = colorDot1  + this.points[0].series.name + \\\": \\\" + this.points[0].y + \\\"只\\\" + \\\"<br/>\\\";        let s2 =  colorDot2 + this.points[1].series.name + \\\": \\\" + this.points[1].y + \\\"棵\\\";        s += s1 + s2;        return s;    }             )";
+            // var formatterFunc = eval(formatter);
+
+//             var sender = {
+//   "chart":{
+//     "panning":true,
+//     "type":"areaspline"
+//   },
+//   "colors":[
+//     {
+//       "linearGradient":{
+//         "x1":0,
+//         "x2":0,
+//         "y1":1,
+//         "y2":0
+//       },
+//       "stops":[
+//         [
+//           0,
+//           "#2E3192"
+//         ],
+//         [
+//           1,
+//           "#1BFFFF"
+//         ]
+//       ]
+//     },
+//     {
+//       "linearGradient":{
+//         "x1":0,
+//         "x2":0,
+//         "y1":1,
+//         "y2":0
+//       },
+//       "stops":[
+//         [
+//           0,
+//           "#D4145A"
+//         ],
+//         [
+//           1,
+//           "#FBB03B"
+//         ]
+//       ]
+//     }
+//   ],
+//   "legend":{},
+//   "plotOptions":{
+//     "series":{
+//       "dataLabels":{
+//         "enabled":false
+//       },
+//       "marker":{
+//         "fillColor":"white",
+//         "lineColor":"",
+//         "symbol":"circle"
+//       },
+//       "stacking":"normal"
+//     }
+//   },
+//   "series":[
+//     {
+//       "data":[
+//         0.45,
+//         0.43,
+//         0.5,
+//         0.55,
+//         0.58,
+//         0.62,
+//         0.83,
+//         0.39,
+//         0.56,
+//         0.67,
+//         0.5,
+//         0.34,
+//         0.5,
+//         0.67,
+//         0.58,
+//         0.29,
+//         0.46,
+//         0.23,
+//         0.47,
+//         0.46,
+//         0.38,
+//         0.56,
+//         0.48,
+//         0.36
+//       ],
+//       "lineWidth":5.0,
+//       "name":"🐶狗子"
+//     },
+//     {
+//       "data":[
+//         0.38,
+//         0.31,
+//         0.32,
+//         0.32,
+//         0.64,
+//         0.66,
+//         0.86,
+//         0.47,
+//         0.52,
+//         0.75,
+//         0.52,
+//         0.56,
+//         0.54,
+//         0.6,
+//         0.46,
+//         0.63,
+//         0.54,
+//         0.51,
+//         0.58,
+//         0.64,
+//         0.6,
+//         0.45,
+//         0.36,
+//         0.67
+//       ],
+//       "lineWidth":5.0,
+//       "name":"🌲树木"
+//     }
+//   ],
+//   "subtitle":{
+//     "text":"数据来源：www.无任何可靠依据.com"
+//   },
+//   "title":{
+//     "text":"2014 ~ 2020 汪星人生存指数"
+//   },
+//   "tooltip":{
+//     "enabled":true,
+//       "formatter":formatterFunc,
+//     "shared":true,
+//     "useHTML":true
+//   },
+//   "xAxis":{
+//     "labels":{},
+//     "title":{}
+//   },
+//   "yAxis":{
+//     "labels":{},
+//     "title":{}
+//   }
+// };
+
+            // loadTheHighChartView(sender, 300, 300);
+
+            let aaGlobalChart;
+            function loadTheHighChartView(sender, receivedWidth, receivedHeight) {
+                let container = document.getElementById('container');
+                if (receivedWidth != 0) {
+                    container.style.width = receivedWidth;
+                }
+                if(receivedHeight != 0) {
+                    container.style.height = receivedHeight;
+                }
+
+                let aaOptions = JSON.parse(sender, function (key, value) {
+                    if (typeof (value) == 'string'
+                        && value.indexOf('function') !== -1) {
+                        return eval(value)
+                    }
+                    return value;
+                });
+
+                // let aaOptions = sender;
+
+                if (aaOptions.defaultOptions) {
+                    Highcharts.setOptions({
+                        lang: aaOptions.defaultOptions
+                    });
+                }
+
+                if (aaOptions.xAxisArray) {
+                    aaOptions.xAxis = aaOptions.xAxisArray
+                }
+                if (aaOptions.yAxisArray) {
+                    aaOptions.yAxis = aaOptions.yAxisArray
+                }
+
+                if (aaOptions.plotOptions) {
+                    configurePlotOptions(aaOptions);
+                }
+
+                aaGlobalChart = Highcharts.chart('container', aaOptions);
+            };
+
+        function configurePlotOptions(aaOptions) {
+            let aaPlotOptions = aaOptions.plotOptions;
+            // let animation = aaPlotOptions.series.animation;
+            // if (animation) {
+            //     let animationEasingType = animation.easing;
+            //     animation.easing = configureTheChartAnimationEasingType(animationEasingType);
+            // }
+
+            if (aaOptions.touchEventEnabled == true && aaPlotOptions.series) {
+                configureChartTouchEvent(aaPlotOptions);
+            }
+        }
+
+        function configureChartTouchEvent(aaPlotOptions) {
+            let mouseOverFunc = function () {
+                let message = {
+                    name: this.series.name,
+                    y: this.y,
+                    x: this.x,
+                    category: this.category,
+                    offset: {plotX: this.plotX, plotY: this.plotY},
+                    index: this.index,
+                };
+                window.webkit.messageHandlers.mouseover.postMessage(message);
+            };
+
+            if (aaPlotOptions.series.point) {// set property directly for series point
+                aaPlotOptions.series.point.events.mouseOver = mouseOverFunc;
+            } else {// creat a new series point object instance
+                let seriesPoint = {
+                    events: {
+                        mouseOver: mouseOverFunc,
+                    }
+                };
+                aaPlotOptions.series.point = seriesPoint;
+            }
+        }
+
+        function onlyRefreshTheChartDataWithSeries(receivedSeries, animation) {
+            let receivedSeriesArr = JSON.parse(receivedSeries);
+            let seriesArrLength = receivedSeriesArr.length;
+            for (let i = 0; i < seriesArrLength; i++) {
+                let receivedSeriesElementData = receivedSeriesArr[i].data;
+                let seriesElement = aaGlobalChart.series[i];
+                seriesElement.setData(receivedSeriesElementData, false);
+            }
+
+            let animationBool = (animation === "true");
+            aaGlobalChart.redraw(animationBool);
+        }
+
+        function updateChart(optionsStr, redraw) {
+            let options = JSON.parse(optionsStr);
+            aaGlobalChart.update(options,redraw);
+        }
+
+        function addPointToChartSeries(elementIndex, optionsStr, redraw, shift, animation) {
+            let options = JSON.parse(optionsStr);
+            let redrawBool = (redraw === "true");
+            let shiftBool = (shift === "true");
+            let animationBool = (animation === "true");
+
+            let seriesElement = aaGlobalChart.series[elementIndex];
+            seriesElement.addPoint(options, redrawBool, shiftBool, animationBool);
+        }
+
+        function redrawWithAnimation(animation) {
+            let animationBool = (animation === "true");
+            aaGlobalChart.redraw(animationBool);
+        }
+
+        function setTheChartViewContentWidth(receivedWidth) {
+            let container = document.getElementById('container');
+            container.style.width = receivedWidth;
+            aaGlobalChart.reflow();
+        }
+
+        function setTheChartViewContentHeight(receivedHeight) {
+            let container = document.getElementById('container');
+            container.style.height = receivedHeight;
+            aaGlobalChart.reflow();
+        }
+
+        function setChartSeriesHidden(hidden) {
+            let seriesLength = aaGlobalChart.series.length;
+            for (let i = 0; i < seriesLength; i++) {
+                let seriesElement = aaGlobalChart.series[i];
+                if (hidden === "true") {
+                    seriesElement.hide();
+                } else {
+                    seriesElement.show();
+                }
+            }
+        }
+
+        function showTheSeriesElementContentWithIndex(elementIndex) {
+            let seriesElement = aaGlobalChart.series[elementIndex];
+            seriesElement.show();
+        }
+
+        function hideTheSeriesElementContentWithIndex(elementIndex) {
+            let seriesElement = aaGlobalChart.series[elementIndex];
+            seriesElement.hide();
+        }
+
+        function addElementToChartSeriesWithElement(elementStr) {
+            let seriesElement = JSON.parse(elementStr);
+            aaGlobalChart.addSeries(seriesElement);
+        }
+
+        function removeElementFromChartSeriesWithElementIndex(elementIndex) {
+            let seriesElement = aaGlobalChart.series[elementIndex];
+            if (seriesElement) {
+                seriesElement.remove(true);
+            }
+        }
+
+        function evaluateTheJavaScriptStringFunction(jsStringFunction) {
+            eval(jsStringFunction);
+        }
+
+        function changeChartSize(receivedWidth, receivedHeight, receivedAnimation) {
+            let container = document.getElementById('container');
+            container.style.width = receivedWidth;
+            container.style.height = receivedHeight;
+
+            let aaAnimation;
+            if (receivedAnimation) {
+                aaAnimation = JSON.parse(receivedAnimation);
+                let animationEasingType = aaAnimation.easing;
+                aaAnimation.easing = configureTheChartAnimationEasingType(animationEasingType);
+            }
+
+            aaGlobalChart.setSize(receivedWidth, receivedHeight, aaAnimation);
+        }
+        
+            </script>
+    </body>
+</html>
