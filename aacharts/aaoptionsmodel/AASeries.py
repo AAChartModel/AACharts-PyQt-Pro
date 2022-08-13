@@ -1,5 +1,4 @@
-
-
+from ast import Num
 from typing import List
 from aacharts.aaenum.AAEnum import AAChartStackingType
 from aacharts.aaoptionsmodel.AADataLabels import AADataLabels
@@ -92,6 +91,7 @@ class AAEvents:
 
 class AASeries:
     borderRadius: float
+    borderWidth: Num
     marker: AAMarker
     stacking: str
     animation: AAAnimation
@@ -114,6 +114,9 @@ class AASeries:
 
     def borderRadiusSet(self, prop: float):
         self.borderRadius = prop
+        return self
+    def borderWidthSet(self, prop: Num):
+        self.borderWidth = prop
         return self
 
     def markerSet(self, prop: AAMarker):

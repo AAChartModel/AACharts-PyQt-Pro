@@ -5,10 +5,12 @@ from aacharts.aaoptionsmodel.AADataLabels import AADataLabels, AAFilter, AATextP
 from aacharts.aaoptionsmodel.AALegend import AALegend
 from aacharts.aaoptionsmodel.AAOptions import AAOptions
 from aacharts.aaoptionsmodel.AAPane import AAPane, AABackgroundElement
+from aacharts.aaoptionsmodel.AAPlotBandsElement import AAPlotBandsElement
 from aacharts.aaoptionsmodel.AASeries import AAEvents
 from aacharts.aaoptionsmodel.AASubtitle import AASubtitle
 from aacharts.aaoptionsmodel.AATitle import AATitle
 from aacharts.aaoptionsmodel.AATooltip import AATooltip
+from aacharts.aaoptionsmodelpro.AABulletDataElement import AABulletDataElement
 from aacharts.aaoptionsmodelpro.AAColorAxis import AAColorAxis, AADataClassesElement
 from aacharts.aaoptionsmodelpro.AAData import AAData
 from aacharts.aaoptionsmodelpro.AAHeatmap import AAHeatmap
@@ -1388,5 +1390,56 @@ class AAOptionsProComposer:
               [1.00, "#1904ddE6"],
           ])])
       return aaOptions
+
+  @staticmethod
+  def bulletChart():
+      return (AAOptions()
+              .chartSet(AAChart()
+                        .marginTopSet(40)
+                        .invertedSet(True)
+                        #            .marginLeftSet(135)
+                        .heightSet(200)
+                        .typeSet(AAChartType.bullet))
+              .titleSet(AATitle()
+                        .textSet("2017 年公司运营情况"))
+              .xAxisSet(AAXAxis()
+                        .categoriesSet(["营收千美元", ]))
+              .yAxisSet(AAYAxis()
+                        .gridLineWidthSet(0)
+                        .plotBandsSet([
+          AAPlotBandsElement()
+          .fromSet(0)
+          .toSet(150)
+          .colorSet("#666"),
+          AAPlotBandsElement()
+          .fromSet(150)
+          .toSet(225)
+          .colorSet("#999"),
+          AAPlotBandsElement()
+          .fromSet(225)
+          .toSet(9000000000)
+          .colorSet("#bbb")
+      ])
+              .titleSet(None))
+              .plotOptionsSet(AAPlotOptions()
+                              .seriesSet(AASeries()
+                                         .pointPaddingSet(0.25)
+                                         .borderWidthSet(0)
+                                         #                .colorSet("#000")
+                                         #                .targetOptionsSet(AATargetOptions()
+                                         #                    .widthSet("200%"))
+                                         ))
+              .legendSet(AALegend()
+                         .enabledSet(False))
+              .seriesSet([
+          AASeriesElement()
+          .dataSet([
+              AABulletDataElement()
+              .ySet(275)
+              .targetSet(250)
+          ])
+      ])
+              .tooltipSet(AATooltip()
+                          .pointFormatSet("{point.y} （目标值 {point.target}）")))
 
 
