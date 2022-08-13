@@ -122,8 +122,8 @@ class MainTreeWidget(QtWidgets.QWidget):
 
     # https://www.highcharts.com/demo
     def chartConfigurationWithSelectedIndex(self, selectedIndex):
-        if selectedIndex ==  0: return AAOptionsProComposer.sankeyChart()
-        elif selectedIndex ==  1: return AAOptionsProComposer.variablepieChart()
+        if   selectedIndex ==  0: return AAOptionsProComposer.sankeyChart()
+        elif selectedIndex ==  1: return AAOptionsProComposer.parallelCoordinatesSplineChart()
         elif selectedIndex ==  2: return AAOptionsProComposer.treemapWithLevelsData()
         elif selectedIndex ==  3: return AAOptionsProComposer.variwideChart()
         elif selectedIndex ==  4: return AAOptionsProComposer.sunburstChart()

@@ -7,6 +7,7 @@ from aacharts.aaoptionsmodel.AALabels import AALabels
 from aacharts.aaoptionsmodel.AATitle import AATitle
 from aacharts.aaenum.AAEnum import AAChartAxisType
 from aacharts.aaoptionsmodel.AAXAxis import AADateTimeLabelFormats
+from ast import Num
 
 
 class AAYAxis:
@@ -59,6 +60,19 @@ class AAYAxis:
     tickLength: float # The length of the axis tick marks. The default is: 10.
     tickPosition: str # Position of the tick line relative to the axis line. Available values ​​are "inside" and "outside", which represent the inside and outside of the axis line, respectively. The default is: "outside".
     tickPositions: List # Custom Y-axis coordinates (eg: [0, 25, 50, 75, 100])
+    top: Num
+    height: Num
+    tooltipValueFormat: str # Parallel coordinates only.https: // api.highcharts.com.cn / highcharts / yAxis.tooltipValueFormat.html
+
+    def topSet(self, prop:Num):
+        self.top = prop
+        return self
+    def heightSet(self, prop:Num):
+        self.height = prop
+        return self
+    def tooltipValueFormatSet(self, prop:str):
+        self.tooltipValueFormat = prop
+        return self
 
     def alternateGridColorSet(self, prop: str):
         self.alternateGridColor = prop

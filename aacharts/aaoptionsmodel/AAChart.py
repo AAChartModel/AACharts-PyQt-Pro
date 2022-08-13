@@ -1,8 +1,10 @@
+from ast import Num
 from aacharts.aachartcreator.AAChartModel import AAChartType, AAChartZoomType
 from typing import List
 from aacharts.aaoptionsmodel.AAAnimation import AAAnimation
 from aacharts.aaoptionsmodel.AACredits import AAPosition
 from aacharts.aaoptionsmodel.AAScrollablePlotArea import AAScrollablePlotArea
+from aacharts.aaoptionsmodelpro.AAParallelAxes import AAParallelAxes
 from aacharts.aatool.AAStringPurer import AAStringPurer
 
 
@@ -61,6 +63,22 @@ class AAChart:
     scrollablePlotArea: AAScrollablePlotArea
     resetZoomButton: AAResetZoomButton
     events: AAChartEvents
+    parallelCoordinates: bool
+    parallelAxes: AAParallelAxes
+    height: Num
+
+
+    def parallelCoordinatesSet(self, prop: bool):
+        self.parallelCoordinates = prop
+        return self
+
+    def parallelAxesSet(self, prop: AAParallelAxes):
+        self.parallelAxes = prop
+        return self
+
+    def heightSet(self, prop: Num):
+        self.height = prop
+        return self
 
     def typeSet(self, prop: AAChartType):
         self.type = prop.value

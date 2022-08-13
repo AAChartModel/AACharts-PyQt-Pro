@@ -63,7 +63,25 @@ class AAPoint:
 
 
 class AAEvents:
+    click: str
+    mouseOver: str
+    mouseOut: str
     legendItemClick: str
+
+    def clickSet(self, prop: str):
+        if (prop != None):
+            self.click = AAStringPurer.pureJSString(prop)
+        return self
+
+    def mouseOverSet(self, prop: str):
+        if (prop != None):
+            self.mouseOver = AAStringPurer.pureJSString(prop)
+        return self
+
+    def mouseOutSet(self, prop: str):
+        if (prop != None):
+            self.mouseOut = AAStringPurer.pureJSString(prop)
+        return self
 
     def legendItemClickSet(self, prop: str):
         if (prop != None):

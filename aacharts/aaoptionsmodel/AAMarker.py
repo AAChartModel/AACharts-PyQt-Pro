@@ -35,6 +35,7 @@ class AAMarkerStates:
 
 
 class AAMarker:
+    enabled: bool
     radius: float
     symbol: str
     fillColor: str
@@ -42,6 +43,9 @@ class AAMarker:
     lineColor: str
     states: AAMarkerStates
 
+    def enabledSet(self, prop: float):
+        self.enabled = prop;
+        return self
     def radiusSet(self, prop: float):
         self.radius = prop
         return self

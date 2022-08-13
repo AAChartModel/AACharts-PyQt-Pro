@@ -5,6 +5,7 @@ from aacharts.aaoptionsmodel.AADataLabels import AADataLabels, AAFilter, AATextP
 from aacharts.aaoptionsmodel.AALegend import AALegend
 from aacharts.aaoptionsmodel.AAOptions import AAOptions
 from aacharts.aaoptionsmodel.AAPane import AAPane, AABackgroundElement
+from aacharts.aaoptionsmodel.AASeries import AAEvents
 from aacharts.aaoptionsmodel.AASubtitle import AASubtitle
 from aacharts.aaoptionsmodel.AATitle import AATitle
 from aacharts.aaoptionsmodel.AATooltip import AATooltip
@@ -14,6 +15,7 @@ from aacharts.aaoptionsmodelpro.AAHeatmap import AAHeatmap
 from aacharts.aaoptionsmodelpro.AALayoutAlgorithm import AALayoutAlgorithm
 from aacharts.aaoptionsmodelpro.AALevelsElement import AALevelsElement, AAColorVariation
 from aacharts.aaoptionsmodelpro.AAPackedbubble import AAPackedbubble
+from aacharts.aaoptionsmodelpro.AAParallelAxes import AAParallelAxes
 from aacharts.aaoptionsmodelpro.AASolidgauge import AASolidgauge
 from aacharts.aaoptionsmodelpro.AASolidgaugeDataElement import AASolidgaugeDataElement
 from aacharts.aaoptionsmodelpro.AATreemap import AATreemap
@@ -73,18 +75,18 @@ class AAOptionsProComposer:
   def variablepieChart():
     aaChart = (AAChart()
     .typeSet(AAChartType.variablepie))
-    
+
     aaTitle = (AATitle()
     .textSet("不同国家人口密度及面积对比"))
-    
+
     aaSubtitle = (AASubtitle()
     .textSet("扇区长度（圆周方法）表示面积，宽度（纵向）表示人口密度"))
-    
+
     aaTooltip = (AATooltip()
     .enabledSet(True)
     .headerFormatSet("")
     .pointFormatSet("<span style=""color:{point.color"">\u25CF</span> <b>():point.name</b><br/>""面积 (平方千米): <b>{point.y</b><br/>""人口密度 (每平方千米人数): <b>{point.z</b><br/>"""))
-    
+
     aaOptions = (AAOptions()
     .chartSet(aaChart)
     .titleSet(aaTitle)
@@ -98,7 +100,7 @@ class AAOptionsProComposer:
                        .enabledSet(False))
         .dataSet(AAOptionsData.variablepieData())
                ]))
-    
+
     return aaOptions
 
 
@@ -130,26 +132,26 @@ class AAOptionsProComposer:
   def variwideChart():
     aaChart = (AAChart()
     .typeSet(AAChartType.variwide))
-    
+
     aaTitle = (AATitle()
     .textSet("2016 年欧洲各国人工成本"))
-    
+
     aaSubtitle = (AASubtitle()
     .textSet("数据来源:EUROSTAT"))
-    
+
     aaXAxis = (AAXAxis()
     .visibleSet(True)
     .typeSet(AAChartAxisType.category)
     .titleSet(AATitle()
               .textSet(" 柱子宽度与 GDP 成正比")))
-    
+
     aaTooltip = (AATooltip()
     .enabledSet(True)
     .pointFormatSet("人工成本： <b>€ {point.y}/h</b><br>' + 'GDP: <b>€ {point.z} 百万</b><br>"))
-    
+
     aaLegend = (AALegend()
     .enabledSet(False))
-    
+
     seriesElementArr = [
         AASeriesElement()
         .nameSet("人工成本")
@@ -158,7 +160,7 @@ class AAOptionsProComposer:
                        .enabledSet(True)
                        .formatSet("€{point.y:.0f}"))
         .colorByPointSet(True)]
-    
+
     aaOptions = (AAOptions()
     .chartSet(aaChart)
     .titleSet(aaTitle)
@@ -167,7 +169,7 @@ class AAOptionsProComposer:
     .tooltipSet(aaTooltip)
     .legendSet(aaLegend)
     .seriesSet(seriesElementArr))
-    
+
     return aaOptions
 
 
@@ -175,20 +177,20 @@ class AAOptionsProComposer:
   def sunburstChart():
     aaChart = (AAChart()
     .typeSet(AAChartType.sunburst))
-    
+
     aaTitle = (AATitle()
     .textSet("2017 世界人口分布"))
-    
+
     aaSubtitle = (AASubtitle()
     .textSet("数据来源:<href=""https:#en.wikipedia.org/wiki/List_of_countries_by_population_(United_Nations)"">Wikipedia</a>"))
-    
+
     aaTooltip = (AATooltip()
     .enabledSet(True)
     .pointFormatSet("<b>{point.name}</b>的人口数量是：<b>{point.value}</b>"))
-    
+
     aaLegend = (AALegend()
     .enabledSet(False))
-    
+
     seriesElementArr = [
         AASeriesElement()
         .allowDrillToNodeSet(True)
@@ -209,11 +211,11 @@ class AAOptionsProComposer:
             .colorVariationSet(AAColorVariation()
                                .keySet("brightness")
                                .toSet(0.5))
-            
+
                    ])
         .dataSet(AAOptionsData.sunburstData())
     ]
-    
+
     aaOptions = (AAOptions()
     .chartSet(aaChart)
     .titleSet(aaTitle)
@@ -221,7 +223,7 @@ class AAOptionsProComposer:
     .tooltipSet(aaTooltip)
     .legendSet(aaLegend)
     .seriesSet(seriesElementArr))
-    
+
     return aaOptions
 
 
@@ -381,34 +383,34 @@ class AAOptionsProComposer:
     aaChart = (AAChart()
     .typeSet(AAChartType.dumbbell)
     .invertedSet(True))
-    
+
     aaTitle = (AATitle()
     .textSet("各国预期寿命变化"))
-    
+
     aaSubtitle = (AASubtitle()
     .textSet("1960 vs 2018"))
-    
+
     aaXAxis = (AAXAxis()
     .visibleSet(True)
     .typeSet(AAChartAxisType.category))
-    
+
     aaYAxis = (AAYAxis()
     .visibleSet(True)
     .titleSet(AATitle()
               .textSet("Life Expectancy (years)")))
-    
+
     aaTooltip = (AATooltip()
     .enabledSet(True))
-    
+
     aaLegend = (AALegend()
     .enabledSet(False))
-    
+
     seriesElementArr = [
         AASeriesElement()
         .nameSet("各国预期寿命变化")
         .dataSet(AAOptionsData.dumbbellData())
     ]
-    
+
     aaOptions = (AAOptions()
     .chartSet(aaChart)
     .titleSet(aaTitle)
@@ -418,7 +420,7 @@ class AAOptionsProComposer:
     .tooltipSet(aaTooltip)
     .legendSet(aaLegend)
     .seriesSet(seriesElementArr))
-    
+
     return aaOptions
 
 
@@ -426,34 +428,34 @@ class AAOptionsProComposer:
   def lollipopChart():
     aaChart = (AAChart()
     .typeSet(AAChartType.lollipop))
-    
+
     aaTitle = (AATitle()
     .textSet("世界十大人口国家"))
-    
+
     aaSubtitle = (AASubtitle()
     .textSet("2018"))
-    
+
     aaXAxis = (AAXAxis()
     .visibleSet(True)
     .typeSet(AAChartAxisType.category))
-    
+
     aaYAxis = (AAYAxis()
     .visibleSet(True)
     .titleSet(AATitle()
               .textSet("人口")))
-    
+
     aaTooltip = (AATooltip()
     .enabledSet(True))
-    
+
     aaLegend = (AALegend()
     .enabledSet(False))
-    
+
     seriesElementArr = [
         AASeriesElement()
         .nameSet("Population")
         .dataSet(AAOptionsData.lollipopData())
     ]
-    
+
     aaOptions = (AAOptions()
     .chartSet(aaChart)
     .titleSet(aaTitle)
@@ -463,7 +465,7 @@ class AAOptionsProComposer:
     .tooltipSet(aaTooltip)
     .legendSet(aaLegend)
     .seriesSet(seriesElementArr))
-    
+
     return aaOptions
 
 
@@ -1287,5 +1289,91 @@ class AAOptionsProComposer:
                       )
           .turboThresholdSet(1.7976931348623157e+308)
       ]))
+
+  @staticmethod
+  def parallelCoordinatesSplineChart():
+      marathonDataArr = AAOptionsData.marathonData()
+      seriesArr = []
+      for i in range(len(marathonDataArr)):
+          aaSeriesElement = (AASeriesElement()
+          .nameSet("Runner")
+          .dataSet(marathonDataArr[i])
+          .shadowSet(False))
+          seriesArr.append(aaSeriesElement)
+
+      return (AAOptions()
+              .chartSet(AAChart()
+                        .typeSet(AAChartType.spline)
+                        .parallelCoordinatesSet(True)
+                        .parallelAxesSet(AAParallelAxes()
+                                         .lineWidthSet(2)))
+              .titleSet(AATitle()
+                        .textSet("Marathon set"))
+              .plotOptionsSet(AAPlotOptions()
+                              .seriesSet(AASeries()
+                                         .animationSet(False)
+                                         .markerSet(AAMarker()
+                                                    .enabledSet(False)
+                                                    .statesSet(AAMarkerStates()
+                                                               .hoverSet(AAMarkerHover()
+                                                                         .enabledSet(False))))
+                                         .statesSet(AAStates()
+                                                    .hoverSet(AAHover()
+                                                              .haloSet(AAHalo()
+                                                                       .sizeSet(0))))
+                                         .eventsSet(AAEvents()
+                                                    .mouseOverSet(""))))
+              .tooltipSet(AATooltip()
+                          .pointFormatSet("●{series.name}: {point.formattedValue}"))
+              .xAxisSet(AAXAxis()
+                        .categoriesSet([
+          "Training date",
+          "Miles for training run",
+          "Training time",
+          "Shoe brand",
+          "Running pace per mile",
+          "Short or long",
+          "After 2004",
+      ])
+                        .offsetSet(10))
+              .yAxisSet([
+          AAYAxis()
+          .typeSet(AAChartAxisType.datetime)
+          .tooltipValueFormatSet("{value:%Y-%m-%d}"),
+          AAYAxis()
+          .minSet(0)
+          .tooltipValueFormatSet("{value} mile(s)"),
+          AAYAxis()
+          .typeSet(AAChartAxisType.datetime)
+          .minSet(0)
+          .labelsSet(AALabels()
+                     .formatSet("{value:%H:%M}")),
+          AAYAxis()
+          .categoriesSet([
+              "Other",
+              "Adidas",
+              "Mizuno",
+              "Asics",
+              "Brooks",
+              "New Balance",
+              "Izumi",
+          ]),
+          AAYAxis()
+          .typeSet(AAChartAxisType.datetime),
+          AAYAxis()
+          .categoriesSet([
+              "> 5miles",
+              "< 5miles",
+          ]),
+          AAYAxis()
+          .categoriesSet([
+              "Before",
+              "After",
+          ])
+      ])
+              .colorsSet([AARgbaColor(255, 0, 0, 0.1), ])
+              .seriesSet(seriesArr))
+
+
 
 

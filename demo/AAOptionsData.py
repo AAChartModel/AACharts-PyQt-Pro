@@ -147,6 +147,10 @@ class AAOptionsData:
         return AAOptionsData.getJsonDataWithJsonFileName("vectorData")
 
 
+    @staticmethod
+    def marathonData():
+        return AAOptionsData.getJsonDataWithJsonFileName("marathonData")
+
     # to do
     # https://blog.csdn.net/m0_37693335/article/details/81474995
     # python 相对路径打开文件夹
