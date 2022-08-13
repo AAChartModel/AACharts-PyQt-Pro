@@ -65,6 +65,7 @@ class MainTreeWidget(QtWidgets.QWidget):
              "parallelCoordinatesSplineChart---平行坐标曲线图",
              "parallelCoordinatesLineChart---平行坐标折线图📈",
              "bulletChart---子弹图💣",
+             "histogramChart---直方图📊",
              ]
         ]
 
@@ -161,6 +162,10 @@ class MainTreeWidget(QtWidgets.QWidget):
         elif selectedIndex == 34: return AAOptionsProComposer.parallelCoordinatesSplineChart()
         elif selectedIndex == 35: return AAOptionsProComposer.parallelCoordinatesLineChart()
         elif selectedIndex == 36: return AAOptionsProComposer.bulletChart()
+        elif selectedIndex == 37: return AAOptionsProComposer.histogramChart()
+
+
+
 
 
 

@@ -1442,4 +1442,45 @@ class AAOptionsProComposer:
               .tooltipSet(AATooltip()
                           .pointFormatSet("{point.y} （目标值 {point.target}）")))
 
+  @staticmethod
+  def histogramChart():
+      return (AAOptions()
+      .titleSet(AATitle()
+                .textSet("AAChartKit-Pro Histogram"))
+      .xAxisSet([
+          AAXAxis()
+          .titleSet(AATitle()
+                    .textSet("Data")),
+          AAXAxis()
+          .titleSet(AATitle()
+                    .textSet("Histogram"))
+          .oppositeSet(True)
+      ])
+      .yAxisSet([
+          AAYAxis()
+          .titleSet(AATitle()
+                    .textSet("Data")),
+          AAYAxis()
+          .titleSet(AATitle()
+                    .textSet("Histogram"))
+          .oppositeSet(True)
+      ])
+      .seriesSet([
+          AASeriesElement()
+          .nameSet("Histogram")
+          .typeSet(AAChartType.histogram)
+          .xAxisSet(1)
+          .yAxisSet(1)
+          .baseSeriesSet("s1")
+          .zIndexSet(-1),
+          AASeriesElement()
+          .nameSet("Data")
+          .typeSet(AAChartType.scatter)
+          .dataSet(AAOptionsData.bellcurveData())
+          .idSet("s1")
+          .markerSet(AAMarker()
+                     .fillColorSet(AAColor.white)  # 点的填充色(用来设置折线连接点的填充色)
+                     .lineWidthSet(2)  # 外沿线的宽度(用来设置折线连接点的轮廓描边的宽度)
+                     .lineColorSet(""))  # 外沿线的颜色(用来设置折线连接点的轮廓描边颜色，当值为空字符串时，默认取数据点或数据列的颜色))
+      ]))
 
