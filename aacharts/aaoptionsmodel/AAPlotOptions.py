@@ -4,6 +4,7 @@ from aacharts.aaenum.AAEnum import AAChartType, AAChartStackingType
 from aacharts.aaoptionsmodel.AADataLabels import AADataLabels
 from aacharts.aaoptionsmodel.AASeries import AASeries
 from aacharts.aaoptionsmodelpro.AAPackedbubble import AAPackedbubble
+from aacharts.aaoptionsmodelpro.AASolidgauge import AASolidgauge
 from aacharts.aaoptionsmodelpro.AATreemap import AATreemap
 
 
@@ -331,7 +332,9 @@ class AAPlotOptions:
      arearange: AAArearange
      packedbubble: AAPackedbubble
      treemap: AATreemap
-     series: AASeries 
+     solidgauge: AASolidgauge
+     series: AASeries
+
          
      def columnSet(self, prop: AAColumn):
         self.column = prop
@@ -379,6 +382,10 @@ class AAPlotOptions:
 
      def treemapSet(self, prop: AATreemap):
          self.treemap = prop
+         return self
+
+     def solidgaugeSet(self, prop: AASolidgauge):
+         self.solidgauge = prop
          return self
      
      def seriesSet(self, prop: AASeries):

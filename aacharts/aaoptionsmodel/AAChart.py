@@ -3,6 +3,8 @@ from typing import List
 from aacharts.aaoptionsmodel.AAAnimation import AAAnimation
 from aacharts.aaoptionsmodel.AACredits import AAPosition
 from aacharts.aaoptionsmodel.AAScrollablePlotArea import AAScrollablePlotArea
+from aacharts.aatool.AAStringPurer import AAStringPurer
+
 
 class AAResetZoomButton:
     position: AAPosition
@@ -20,6 +22,20 @@ class AAResetZoomButton:
     def themeSet(self, prop: map):
         self.theme = prop
         return self
+
+
+class AAChartEvents:
+    load: str
+    selection: str
+
+    def loadSet(self, prop: str):
+        self.load = prop
+        return self
+
+    def selectionSet(self, prop: str):
+        self.selection = prop
+        return self
+
 
 
 class AAChart:
@@ -44,6 +60,7 @@ class AAChart:
     spacingLeft: float # 👈
     scrollablePlotArea: AAScrollablePlotArea
     resetZoomButton: AAResetZoomButton
+    events: AAChartEvents
 
     def typeSet(self, prop: AAChartType):
         self.type = prop.value
@@ -167,4 +184,8 @@ class AAChart:
 
     def resetZoomButtonSet(self, prop: AAResetZoomButton):
         self.resetZoomButton = prop
+        return self
+
+    def eventsSet(self, prop: AAChartEvents):
+        self.events = AAStringPurer.pureJSString(prop)
         return self

@@ -86,6 +86,10 @@ class AAChartType(Enum):
     organization    = "organization"
     arcdiagram      = "arcdiagram"
     flame           = "flame"
+    histogram       = "histogram"
+    solidgauge      = "solidgauge"
+    bullet          = "bullet"
+    
 
 class AAChartZoomType(Enum):
     none = ""
