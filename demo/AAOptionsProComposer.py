@@ -1374,6 +1374,19 @@ class AAOptionsProComposer:
               .colorsSet([AARgbaColor(255, 0, 0, 0.1), ])
               .seriesSet(seriesArr))
 
-
+  @staticmethod
+  def parallelCoordinatesLineChart():
+      aaOptions = AAOptionsProComposer.parallelCoordinatesSplineChart()
+      aaOptions.chart.typeSet(AAChartType.line)
+      aaOptions.colorsSet([AAGradientColor.linearGradient2(
+          AALinearGradientDirection.toRight,
+          [
+              [0.00, "#febc0f0F"],#颜色字符串设置支持十六进制类型和 rgba 类型
+              [0.25, "#FF14d4E6"],
+              [0.50, "#0bf8f5E6"],
+              [0.75, "#F33c52E6"],
+              [1.00, "#1904ddE6"],
+          ])])
+      return aaOptions
 
 

@@ -62,7 +62,8 @@ class MainTreeWidget(QtWidgets.QWidget):
              "packedbubbleSpiralChart---渐进变化的气泡🎈图",
              "solidgaugeChart---活动图🏃️",
              "largeDataHeatmapChart---大数据量热力图",
-
+             "parallelCoordinatesSplineChart---平行坐标曲线图",
+            "parallelCoordinatesLineChart---平行坐标折线图📈",
              ]
         ]
 
@@ -122,8 +123,8 @@ class MainTreeWidget(QtWidgets.QWidget):
 
     # https://www.highcharts.com/demo
     def chartConfigurationWithSelectedIndex(self, selectedIndex):
-        if   selectedIndex ==  0: return AAOptionsProComposer.sankeyChart()
-        elif selectedIndex ==  1: return AAOptionsProComposer.parallelCoordinatesSplineChart()
+        if selectedIndex   == 0:  return AAOptionsProComposer.sankeyChart()
+        elif selectedIndex ==  1: return AAOptionsProComposer.variablepieChart()
         elif selectedIndex ==  2: return AAOptionsProComposer.treemapWithLevelsData()
         elif selectedIndex ==  3: return AAOptionsProComposer.variwideChart()
         elif selectedIndex ==  4: return AAOptionsProComposer.sunburstChart()
@@ -156,6 +157,8 @@ class MainTreeWidget(QtWidgets.QWidget):
         elif selectedIndex == 31: return AAOptionsProComposer.packedbubbleSpiralChart()
         elif selectedIndex == 32: return AAOptionsProComposer.solidgaugeChart()
         elif selectedIndex == 33: return AAOptionsProComposer.largeDataHeatmapChart()
+        elif selectedIndex == 34: return AAOptionsProComposer.parallelCoordinatesSplineChart()
+        elif selectedIndex == 35: return AAOptionsProComposer.parallelCoordinatesLineChart()
 
 
 
