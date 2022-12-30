@@ -1,10 +1,10 @@
 import sys
 from PySide6 import QtWidgets
-import wx
+# import wx
 from demo.MainTreeWidget import MainTreeWidget
 
 def main():
-    app = wx.App()
+    # app = wx.App()
     app.MainLoop()
 
 if __name__ == "__main__":
