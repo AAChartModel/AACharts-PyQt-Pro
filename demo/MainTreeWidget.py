@@ -11,6 +11,64 @@ class MainTreeWidget(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
 
+        self.setAttribute(QtCore.Qt.WA_StyledBackground, True)
+
+        self.themes = {
+            "light": {
+                "label": "浅色主题",
+                "window_bg": "#f4f6fd",
+                "text_primary": "#1f2430",
+                "text_secondary": "#617093",
+                "frame_gradient_start": "rgba(255,255,255,0.94)",
+                "frame_gradient_end": "rgba(237,241,255,0.94)",
+                "frame_border": "rgba(45, 108, 223, 0.10)",
+                "tree_item_selected_bg": "rgba(63,133,242,0.18)",
+                "tree_item_selected_text": "#2d6cdf",
+                "tree_item_hover_bg": "rgba(63,133,242,0.10)",
+                "tree_primary": "#293041",
+                "tree_secondary": "#6d7996",
+                "input_bg": "rgba(255,255,255,0.7)",
+                "input_bg_focus": "rgba(255,255,255,0.92)",
+                "input_border": "rgba(45, 108, 223, 0.35)",
+                "input_border_focus": "#2d6cdf",
+                "accent": "#2d6cdf",
+                "accent_hover": "#1f55b0",
+                "accent_pressed": "#17448f",
+                "accent_text": "#ffffff",
+                "chart_bg": "#ffffff",
+                "combo_bg": "rgba(255,255,255,0.78)",
+                "combo_border": "rgba(45,108,223,0.28)",
+                "combo_text": "#1f2430"
+            },
+            "dark": {
+                "label": "深色主题",
+                "window_bg": "#141823",
+                "text_primary": "#e5e9f5",
+                "text_secondary": "#9aa7c7",
+                "frame_gradient_start": "rgba(33,39,55,0.96)",
+                "frame_gradient_end": "rgba(23,28,40,0.96)",
+                "frame_border": "rgba(96, 108, 150, 0.35)",
+                "tree_item_selected_bg": "rgba(90,130,245,0.36)",
+                "tree_item_selected_text": "#e6ecff",
+                "tree_item_hover_bg": "rgba(90,130,245,0.20)",
+                "tree_primary": "#f5f7ff",
+                "tree_secondary": "#9aa7c7",
+                "input_bg": "rgba(36,44,62,0.88)",
+                "input_bg_focus": "rgba(43,51,72,0.94)",
+                "input_border": "rgba(105,135,255,0.30)",
+                "input_border_focus": "rgba(105,135,255,0.75)",
+                "accent": "#5470ff",
+                "accent_hover": "#405be0",
+                "accent_pressed": "#2f48c2",
+                "accent_text": "#f5f7ff",
+                "chart_bg": "#1d2332",
+                "combo_bg": "rgba(36,44,62,0.88)",
+                "combo_border": "rgba(105,135,255,0.35)",
+                "combo_text": "#e5e9f5"
+            }
+        }
+        self.currentThemeKey = "light"
+
         self.chartView = PYChartView()
         testChartModel = AAOptionsProComposer.sankeyChart()
         self.chartView.aa_drawChartWithChartOptions(testChartModel)
@@ -30,34 +88,6 @@ class MainTreeWidget(QtWidgets.QWidget):
         folderTree.setAnimated(True)
         folderTree.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
         folderTree.setUniformRowHeights(False)
-        folderTree.setStyleSheet(
-            """
-            QTreeWidget#proChartTree {
-                border: none;
-                background: transparent;
-                font-size: 14px;
-            }
-            QTreeWidget#proChartTree::item {
-                padding: 6px 10px;
-                border-radius: 6px;
-            }
-            QTreeWidget#proChartTree::item:selected {
-                background: rgba(63, 133, 242, 0.18);
-                color: #2d6cdf;
-            }
-            QTreeWidget#proChartTree::item:hover:!selected {
-                background: rgba(63, 133, 242, 0.1);
-            }
-            QTreeWidget#proChartTree::branch:closed:has-children {
-                border-image: none;
-                image: url();
-            }
-            QTreeWidget#proChartTree::branch:open:has-children {
-                border-image: none;
-                image: url();
-            }
-            """
-        )
 
 
         sectionTitleArr = [
@@ -145,48 +175,34 @@ class MainTreeWidget(QtWidgets.QWidget):
         self.searchInput.setPlaceholderText("搜索或筛选图表类型…")
         self.searchInput.textChanged.connect(self.filterTreeItems)
         self.searchInput.setClearButtonEnabled(True)
-        self.searchInput.setStyleSheet(
-            """
-            QLineEdit {
-                border-radius: 8px;
-                padding: 6px 12px;
-                border: 1px solid rgba(45, 108, 223, 0.35);
-                background: rgba(255, 255, 255, 0.6);
-            }
-            QLineEdit:focus {
-                border-color: #2d6cdf;
-                background: rgba(255, 255, 255, 0.85);
-            }
-            """
-        )
 
         headlineLabel = QtWidgets.QLabel("探索进阶数据可视化")
         headlineFont = QtGui.QFont(self.font())
         headlineFont.setPointSize(headlineFont.pointSize() + 3)
         headlineFont.setBold(True)
         headlineLabel.setFont(headlineFont)
-        headlineLabel.setStyleSheet("color: #2d2f36;")
+        self.headlineLabel = headlineLabel
 
         self.folderTree.itemSelectionChanged.connect(self.handleTreeSelectionChanged)
         self.folderTree.expandAll()
 
         listContainer = QtWidgets.QFrame()
-        listContainer.setStyleSheet(
-            """
-            QFrame {
-                background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
-                                           stop:0 rgba(255,255,255,0.92),
-                                           stop:1 rgba(237,241,255,0.92));
-                border-radius: 14px;
-                border: 1px solid rgba(45, 108, 223, 0.08);
-            }
-            """
-        )
+        self.listContainer = listContainer
 
         listLayout = QtWidgets.QVBoxLayout(listContainer)
         listLayout.setContentsMargins(18, 18, 18, 18)
         listLayout.setSpacing(12)
-        listLayout.addWidget(headlineLabel)
+        headerLayout = QtWidgets.QHBoxLayout()
+        headerLayout.addWidget(headlineLabel)
+        headerLayout.addStretch()
+
+        self.themeSelector = QtWidgets.QComboBox()
+        for key, config in self.themes.items():
+            self.themeSelector.addItem(config["label"], userData=key)
+        self.themeSelector.currentIndexChanged.connect(self.handleThemeChanged)
+        headerLayout.addWidget(self.themeSelector)
+
+        listLayout.addLayout(headerLayout)
         listLayout.addWidget(self.searchInput)
         listLayout.addWidget(self.folderTree)
 
@@ -204,26 +220,11 @@ class MainTreeWidget(QtWidgets.QWidget):
 
         self.backButton = QtWidgets.QPushButton("返回示例总览")
         self.backButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.backButton.setStyleSheet(
-            """
-            QPushButton {
-                padding: 8px 16px;
-                border-radius: 10px;
-                background: #2d6cdf;
-                color: white;
-                font-weight: 600;
-            }
-            QPushButton:hover {
-                background: #1f55b0;
-            }
-            QPushButton:pressed {
-                background: #17448f;
-            }
-            """
-        )
         self.layout.addWidget(self.backButton, alignment=QtCore.Qt.AlignRight)
 
         self.setWindowTitle("进阶高阶图表示例")
+
+        self.applyTheme(force=True)
 
 
     @QtCore.Slot()
@@ -261,6 +262,152 @@ class MainTreeWidget(QtWidgets.QWidget):
 
             sectionItem.setHidden(not sectionHasMatch and not matchAll)
             sectionItem.setExpanded(True)
+
+    def handleThemeChanged(self, index: int):
+        selectedKey = self.themeSelector.itemData(index)
+        if not selectedKey or selectedKey == self.currentThemeKey:
+            return
+        self.currentThemeKey = selectedKey
+        self.applyTheme()
+
+    def applyTheme(self, force: bool = False):
+        theme = self.themes.get(self.currentThemeKey, self.themes["light"])
+
+        self.setAutoFillBackground(True)
+        palette = self.palette()
+        palette.setColor(QtGui.QPalette.Window, QtGui.QColor(theme["window_bg"]))
+        palette.setColor(QtGui.QPalette.Base, QtGui.QColor(theme["chart_bg"]))
+        palette.setColor(QtGui.QPalette.Text, QtGui.QColor(theme["text_primary"]))
+        self.setPalette(palette)
+
+        self.headlineLabel.setStyleSheet(f"color: {theme['text_primary']};")
+
+        treeStyle = f"""
+            QTreeWidget#proChartTree {{
+                border: none;
+                background: transparent;
+                font-size: 14px;
+                color: {theme['tree_primary']};
+            }}
+            QTreeWidget#proChartTree::item {{
+                padding: 6px 10px;
+                border-radius: 6px;
+                margin: 2px 4px;
+            }}
+            QTreeWidget#proChartTree::item:selected {{
+                background: {theme['tree_item_selected_bg']};
+                color: {theme['tree_item_selected_text']};
+            }}
+            QTreeWidget#proChartTree::item:hover:!selected {{
+                background: {theme['tree_item_hover_bg']};
+            }}
+            QTreeWidget#proChartTree::branch:closed:has-children {{
+                border-image: none;
+                image: url();
+            }}
+            QTreeWidget#proChartTree::branch:open:has-children {{
+                border-image: none;
+                image: url();
+            }}
+        """
+        self.folderTree.setStyleSheet(treeStyle)
+
+        for sectionIndex in range(self.folderTree.topLevelItemCount()):
+            sectionItem = self.folderTree.topLevelItem(sectionIndex)
+            sectionItem.setForeground(0, QtGui.QBrush(QtGui.QColor(theme["text_primary"])) )
+            for childIndex in range(sectionItem.childCount()):
+                childItem = sectionItem.child(childIndex)
+                childItem.setForeground(0, QtGui.QBrush(QtGui.QColor(theme["tree_primary"])) )
+                childItem.setForeground(1, QtGui.QBrush(QtGui.QColor(theme["tree_secondary"])) )
+
+        inputStyle = f"""
+            QLineEdit {{
+                border-radius: 8px;
+                padding: 6px 12px;
+                border: 1px solid {theme['input_border']};
+                background: {theme['input_bg']};
+                color: {theme['text_primary']};
+            }}
+            QLineEdit:focus {{
+                border: 1px solid {theme['input_border_focus']};
+                background: {theme['input_bg_focus']};
+            }}
+            QLineEdit::placeholder {{
+                color: {theme['text_secondary']};
+            }}
+            QLineEdit QToolButton {{
+                color: {theme['text_secondary']};
+            }}
+        """
+        self.searchInput.setStyleSheet(inputStyle)
+
+        comboStyle = f"""
+            QComboBox {{
+                border-radius: 8px;
+                padding: 6px 12px;
+                border: 1px solid {theme['combo_border']};
+                background: {theme['combo_bg']};
+                color: {theme['combo_text']};
+            }}
+            QComboBox::drop-down {{
+                border: none;
+            }}
+            QComboBox QAbstractItemView {{
+                border-radius: 8px;
+                background: {theme['combo_bg']};
+                color: {theme['combo_text']};
+                selection-background-color: {theme['tree_item_selected_bg']};
+                selection-color: {theme['tree_item_selected_text']};
+            }}
+        """
+        self.themeSelector.setStyleSheet(comboStyle)
+
+        self.listContainer.setStyleSheet(
+            f"""
+            QFrame {{
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                           stop:0 {theme['frame_gradient_start']},
+                                           stop:1 {theme['frame_gradient_end']});
+                border-radius: 14px;
+                border: 1px solid {theme['frame_border']};
+            }}
+        """
+        )
+
+        self.chartView.setStyleSheet(
+            f"""
+            PYChartView {{
+                background: {theme['chart_bg']};
+                border-radius: 14px;
+            }}
+        """
+        )
+
+        self.backButton.setStyleSheet(
+            f"""
+            QPushButton {{
+                padding: 8px 16px;
+                border-radius: 10px;
+                background: {theme['accent']};
+                color: {theme['accent_text']};
+                font-weight: 600;
+            }}
+            QPushButton:hover {{
+                background: {theme['accent_hover']};
+            }}
+            QPushButton:pressed {{
+                background: {theme['accent_pressed']};
+            }}
+        """
+        )
+
+        self.themeSelector.blockSignals(True)
+        indexToSelect = self.themeSelector.findData(self.currentThemeKey)
+        if indexToSelect >= 0 and (force or self.themeSelector.currentIndex() != indexToSelect):
+            self.themeSelector.setCurrentIndex(indexToSelect)
+        self.themeSelector.blockSignals(False)
+
+        self.update()
 
 
     # https://www.highcharts.com/demo
