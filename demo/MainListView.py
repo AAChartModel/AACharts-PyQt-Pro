@@ -2,7 +2,7 @@ from PySide6 import QtWidgets, QtCore
 
 from aacharts.aachartcreator.PYChartView import PYChartView
 from demo.AAOptionsProComposer import AAOptionsProComposer
-from demo.MainTreeWidget import CustomCollectionView
+from demo.MainTreeWidget import MainTreeWidget
 from demo.OfficialChartSampleView import OfficialChartSampleView
 
 
@@ -10,8 +10,10 @@ class FirstView(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
         layout = QtWidgets.QVBoxLayout(self)
-        self.pushButton = QtWidgets.QPushButton("Go to Second View")
-        layout.addWidget(self.pushButton)
+        self.pushButton1 = QtWidgets.QPushButton("Go to official chart sample view")
+        self.pushButton2 = QtWidgets.QPushButton("Go to Tree View")
+        layout.addWidget(self.pushButton1)
+        layout.addWidget(self.pushButton2)
 
 
 
@@ -22,16 +24,23 @@ class MainWindow(QtWidgets.QMainWindow):
         self.setCentralWidget(self.stackedWidget)
 
         self.firstView = FirstView()
-        self.secondView = OfficialChartSampleView()
+        self.officialChartSampleView = OfficialChartSampleView()
+        self.mainTreeView = MainTreeWidget()
 
         self.stackedWidget.addWidget(self.firstView)
-        self.stackedWidget.addWidget(self.secondView)
+        self.stackedWidget.addWidget(self.officialChartSampleView)
+        self.stackedWidget.addWidget(self.mainTreeView)
 
-        self.firstView.pushButton.clicked.connect(self.showSecondView)
-        self.secondView.backButton.clicked.connect(self.showFirstView)
+        self.firstView.pushButton1.clicked.connect(self.showOfficialChartSampleView)
+        self.firstView.pushButton2.clicked.connect(self.showTreeView)
+        self.officialChartSampleView.backButton.clicked.connect(self.showFirstView)
+        self.mainTreeView.backButton.clicked.connect(self.showFirstView)
 
-    def showSecondView(self):
-        self.stackedWidget.setCurrentWidget(self.secondView)
+    def showOfficialChartSampleView(self):
+        self.stackedWidget.setCurrentWidget(self.officialChartSampleView)
+
+    def showTreeView(self):
+        self.stackedWidget.setCurrentWidget(self.mainTreeView)
 
     def showFirstView(self):
         self.stackedWidget.setCurrentWidget(self.firstView)
