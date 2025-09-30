@@ -1,6 +1,4 @@
-from random import random
-
-from PySide6 import QtWidgets, QtCore
+from PySide6 import QtWidgets, QtCore, QtGui
 
 from aacharts.aachartcreator.AAChartModel import AAChartModel
 from aacharts.aachartcreator.AASeriesElement import AASeriesElement
@@ -21,6 +19,45 @@ class MainTreeWidget(QtWidgets.QWidget):
 
         # https://gist.github.com/fredrikaverpil/1fa4f3360ffdb1e69507
         folderTree = QtWidgets.QTreeWidget()
+        folderTree.setObjectName("proChartTree")
+        folderTree.setColumnCount(2)
+        folderTree.setHeaderLabels(["Chart", "Description"])
+        folderTree.header().setDefaultAlignment(QtCore.Qt.AlignLeft)
+        folderTree.header().setStretchLastSection(True)
+        folderTree.setAlternatingRowColors(True)
+        folderTree.setIndentation(16)
+        folderTree.setExpandsOnDoubleClick(False)
+        folderTree.setAnimated(True)
+        folderTree.setSelectionMode(QtWidgets.QAbstractItemView.SingleSelection)
+        folderTree.setUniformRowHeights(False)
+        folderTree.setStyleSheet(
+            """
+            QTreeWidget#proChartTree {
+                border: none;
+                background: transparent;
+                font-size: 14px;
+            }
+            QTreeWidget#proChartTree::item {
+                padding: 6px 10px;
+                border-radius: 6px;
+            }
+            QTreeWidget#proChartTree::item:selected {
+                background: rgba(63, 133, 242, 0.18);
+                color: #2d6cdf;
+            }
+            QTreeWidget#proChartTree::item:hover:!selected {
+                background: rgba(63, 133, 242, 0.1);
+            }
+            QTreeWidget#proChartTree::branch:closed:has-children {
+                border-image: none;
+                image: url();
+            }
+            QTreeWidget#proChartTree::branch:open:has-children {
+                border-image: none;
+                image: url();
+            }
+            """
+        )
 
 
         sectionTitleArr = [
@@ -69,63 +106,161 @@ class MainTreeWidget(QtWidgets.QWidget):
              ]
         ]
 
-        for sectionIndex in range(len(sectionTitleArr)):
-            sectionTitleStr = sectionTitleArr[sectionIndex]
-            sectionIndexStr = f"{sectionIndex + 1}"
-            sectionRoot = QtWidgets.QTreeWidgetItem(folderTree, [sectionIndexStr + "  " + sectionTitleStr])
-            sectionRoot.setData(1, QtCore.Qt.EditRole, sectionIndexStr)
+        primaryTitleFont = QtGui.QFont(self.font())
+        primaryTitleFont.setPointSize(primaryTitleFont.pointSize() + 1)
+        primaryTitleFont.setBold(True)
+
+        secondaryTitleFont = QtGui.QFont(self.font())
+        secondaryTitleFont.setPointSize(secondaryTitleFont.pointSize() - 1)
+
+        for sectionIndex, sectionTitleStr in enumerate(sectionTitleArr):
+            sectionRoot = QtWidgets.QTreeWidgetItem(folderTree, [sectionTitleStr, ""])
+            sectionRoot.setFirstColumnSpanned(True)
+            sectionRoot.setFlags(sectionRoot.flags() & ~QtCore.Qt.ItemIsSelectable)
+            sectionRoot.setFont(0, primaryTitleFont)
+            sectionRoot.setData(0, QtCore.Qt.UserRole, sectionIndex)
 
             singleSectionChartTypeTitleArr = chartTypeTitleArr[sectionIndex]
-            for rowIndex in range(len(singleSectionChartTypeTitleArr)):
-                rowIndexStr = f"{rowIndex + 1}"
-                chartTypeStr = singleSectionChartTypeTitleArr[rowIndex]
-                rowRoot = QtWidgets.QTreeWidgetItem(sectionRoot, [rowIndexStr + "  " + chartTypeStr])
-                rowRoot.setData(1, QtCore.Qt.EditRole, sectionIndexStr)  # Data set to column 2, which is not visible
-                rowRoot.setData(2, QtCore.Qt.EditRole, rowIndexStr)  # Data set to column 2, which is not visible
+            for rowIndex, chartTypeStr in enumerate(singleSectionChartTypeTitleArr):
+                rawParts = chartTypeStr.split("---", maxsplit=1)
+                primaryTitle = rawParts[0].strip()
+                secondaryTitle = rawParts[1].strip() if len(rawParts) > 1 else ""
+                secondaryTitle = secondaryTitle.replace("||", " · ")
 
-        def printer(treeItem):
-            foldername = treeItem.text(0)
-            sectionIndex = treeItem.text(1)
-            rowIndexStr = treeItem.text(2)
-            # treeItem.indexOfChild()
-            print(foldername + ': ' + f"(Section Index: {sectionIndex})" + f"(Row Index: {rowIndex})")
+                displayPrimary = f"{rowIndex + 1:02d}. {primaryTitle}"
+                displaySecondary = secondaryTitle
 
-            if len(rowIndexStr) > 0:
-                sectionIndexValue = int(sectionIndex)
-                rowIndexValue = int(rowIndexStr) - 1
-                if sectionIndexValue == 1:
-                   aaOptions = self.chartConfigurationWithSelectedIndex(rowIndexValue)
-                   self.chartView.aa_drawChartWithChartOptions(aaOptions)
+                rowRoot = QtWidgets.QTreeWidgetItem(sectionRoot, [displayPrimary, displaySecondary])
+                rowRoot.setFont(0, primaryTitleFont)
+                rowRoot.setFont(1, secondaryTitleFont)
+                rowRoot.setData(0, QtCore.Qt.UserRole, sectionIndex)
+                rowRoot.setData(0, QtCore.Qt.UserRole + 1, rowIndex)
+                rowRoot.setData(0, QtCore.Qt.UserRole + 2, chartTypeStr)
+                rowRoot.setToolTip(0, chartTypeStr)
+                rowRoot.setToolTip(1, chartTypeStr)
 
+        self.folderTree = folderTree
 
-        folderTree.itemClicked.connect(lambda: printer(folderTree.currentItem()))
-        folderTree.itemSelectionChanged.connect(lambda: printer(folderTree.currentItem()))
+        self.searchInput = QtWidgets.QLineEdit()
+        self.searchInput.setPlaceholderText("搜索或筛选图表类型…")
+        self.searchInput.textChanged.connect(self.filterTreeItems)
+        self.searchInput.setClearButtonEnabled(True)
+        self.searchInput.setStyleSheet(
+            """
+            QLineEdit {
+                border-radius: 8px;
+                padding: 6px 12px;
+                border: 1px solid rgba(45, 108, 223, 0.35);
+                background: rgba(255, 255, 255, 0.6);
+            }
+            QLineEdit:focus {
+                border-color: #2d6cdf;
+                background: rgba(255, 255, 255, 0.85);
+            }
+            """
+        )
 
-        folderTree.currentColumn()
-        # Qt如何使QTreeWidget始终保持展开？https://blog.csdn.net/can3981132/article/details/52273800
-        folderTree.setItemsExpandable(False)
-        folderTree.expandAll()
+        headlineLabel = QtWidgets.QLabel("探索进阶数据可视化")
+        headlineFont = QtGui.QFont(self.font())
+        headlineFont.setPointSize(headlineFont.pointSize() + 3)
+        headlineFont.setBold(True)
+        headlineLabel.setFont(headlineFont)
+        headlineLabel.setStyleSheet("color: #2d2f36;")
+
+        self.folderTree.itemSelectionChanged.connect(self.handleTreeSelectionChanged)
+        self.folderTree.expandAll()
+
+        listContainer = QtWidgets.QFrame()
+        listContainer.setStyleSheet(
+            """
+            QFrame {
+                background: qlineargradient(x1:0, y1:0, x2:1, y2:1,
+                                           stop:0 rgba(255,255,255,0.92),
+                                           stop:1 rgba(237,241,255,0.92));
+                border-radius: 14px;
+                border: 1px solid rgba(45, 108, 223, 0.08);
+            }
+            """
+        )
+
+        listLayout = QtWidgets.QVBoxLayout(listContainer)
+        listLayout.setContentsMargins(18, 18, 18, 18)
+        listLayout.setSpacing(12)
+        listLayout.addWidget(headlineLabel)
+        listLayout.addWidget(self.searchInput)
+        listLayout.addWidget(self.folderTree)
+
+        splitter = QtWidgets.QSplitter(QtCore.Qt.Vertical)
+        splitter.addWidget(self.chartView)
+        splitter.addWidget(listContainer)
+        splitter.setSizes([480, 280])
+        splitter.setStretchFactor(0, 3)
+        splitter.setStretchFactor(1, 2)
 
         self.layout = QtWidgets.QVBoxLayout(self)
-        # self.layout.addWidget(self.chartView)
-        self.layout.addWidget(self.chartView)
-        self.layout.addWidget(folderTree)
+        self.layout.setContentsMargins(18, 18, 18, 18)
+        self.layout.setSpacing(16)
+        self.layout.addWidget(splitter)
 
-        self.backButton = QtWidgets.QPushButton("Back to First View")
-        self.layout.addWidget(self.backButton)
+        self.backButton = QtWidgets.QPushButton("返回示例总览")
+        self.backButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.backButton.setStyleSheet(
+            """
+            QPushButton {
+                padding: 8px 16px;
+                border-radius: 10px;
+                background: #2d6cdf;
+                color: white;
+                font-weight: 600;
+            }
+            QPushButton:hover {
+                background: #1f55b0;
+            }
+            QPushButton:pressed {
+                background: #17448f;
+            }
+            """
+        )
+        self.layout.addWidget(self.backButton, alignment=QtCore.Qt.AlignRight)
 
-        self.setWindowTitle("你好世界")
-
-    def printer(treeItem):
-        foldername = treeItem.text(0)
-        comment = treeItem.text(1)
-        data = treeItem.text(2)
-        print(foldername + ': ' + comment + ' (' + data + ')')
+        self.setWindowTitle("进阶高阶图表示例")
 
 
     @QtCore.Slot()
-    def magic(self):
-        self.text.setText(random.choice(self.hello))
+    def handleTreeSelectionChanged(self):
+        currentItem = self.folderTree.currentItem()
+        if currentItem is None:
+            return
+
+        rowIndex = currentItem.data(0, QtCore.Qt.UserRole + 1)
+        if rowIndex is None:
+            return
+
+        aaOptions = self.chartConfigurationWithSelectedIndex(rowIndex)
+        if aaOptions is not None:
+            self.chartView.aa_drawChartWithChartOptions(aaOptions)
+
+    def filterTreeItems(self, keyword: str):
+        keyword = keyword.strip().lower()
+        matchAll = keyword == ""
+
+        for sectionIndex in range(self.folderTree.topLevelItemCount()):
+            sectionItem = self.folderTree.topLevelItem(sectionIndex)
+            sectionHasMatch = False
+
+            for rowIndex in range(sectionItem.childCount()):
+                childItem = sectionItem.child(rowIndex)
+                sourceText = childItem.data(0, QtCore.Qt.UserRole + 2) or ""
+                itemMatches = matchAll or any(
+                    keyword in text
+                    for text in [childItem.text(0).lower(), childItem.text(1).lower(), sourceText.lower()]
+                )
+                childItem.setHidden(not itemMatches)
+                if itemMatches:
+                    sectionHasMatch = True
+
+            sectionItem.setHidden(not sectionHasMatch and not matchAll)
+            sectionItem.setExpanded(True)
 
 
     # https://www.highcharts.com/demo
