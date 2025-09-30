@@ -1,10 +1,14 @@
+from typing import Optional
+
 from PySide6 import QtWidgets, QtCore, QtGui
 
-from aacharts.aachartcreator.AAChartModel import AAChartModel
-from aacharts.aachartcreator.AASeriesElement import AASeriesElement
 from aacharts.aachartcreator.PYChartView import PYChartView
-from aacharts.aaenum.AAEnum import AAChartType, AAChartAnimationType, AAChartStackingType
-from aacharts.aatool.AAColor import AAColor
+from aacharts.aaoptionsmodel.AAChart import AAChart
+from aacharts.aaoptionsmodel.AAStyle import AAStyle
+from aacharts.aaoptionsmodel.AALabels import AALabels
+from aacharts.aaoptionsmodel.AALegend import AAItemStyle
+from aacharts.aaoptionsmodel.AATooltip import AATooltip
+from aacharts.aaoptionsmodel.AAOptions import AAOptions
 from demo.AAOptionsProComposer import AAOptionsProComposer
 
 class MainTreeWidget(QtWidgets.QWidget):
@@ -38,7 +42,26 @@ class MainTreeWidget(QtWidgets.QWidget):
                 "chart_bg": "#ffffff",
                 "combo_bg": "rgba(255,255,255,0.78)",
                 "combo_border": "rgba(45,108,223,0.28)",
-                "combo_text": "#1f2430"
+                "combo_text": "#1f2430",
+                "tooltip_bg": "rgba(255,255,255,0.95)",
+                "tooltip_border": "rgba(45,108,223,0.25)",
+                "tooltip_text": "#1f2430",
+                "axis_line": "rgba(45,108,223,0.35)",
+                "axis_tick": "rgba(45,108,223,0.45)",
+                "axis_labels": "#4b587c",
+                "axis_grid": "rgba(45,108,223,0.12)",
+                "legend_text": "#1f2430",
+                "legend_hover": "#2d6cdf",
+                "series_palette": [
+                    "#2D6CDF",
+                    "#FF8A6B",
+                    "#FFC85C",
+                    "#60D694",
+                    "#7B61FF",
+                    "#F45FB6",
+                    "#5CC8F5",
+                    "#FF9F6E"
+                ]
             },
             "dark": {
                 "label": "深色主题",
@@ -64,14 +87,32 @@ class MainTreeWidget(QtWidgets.QWidget):
                 "chart_bg": "#1d2332",
                 "combo_bg": "rgba(36,44,62,0.88)",
                 "combo_border": "rgba(105,135,255,0.35)",
-                "combo_text": "#e5e9f5"
+                "combo_text": "#e5e9f5",
+                "tooltip_bg": "rgba(26,32,48,0.95)",
+                "tooltip_border": "rgba(105,135,255,0.40)",
+                "tooltip_text": "#e5e9f5",
+                "axis_line": "rgba(120,140,220,0.50)",
+                "axis_tick": "rgba(120,140,220,0.50)",
+                "axis_labels": "#d0d8f5",
+                "axis_grid": "rgba(84,112,255,0.18)",
+                "legend_text": "#d5dcff",
+                "legend_hover": "#82a0ff",
+                "series_palette": [
+                    "#58D8F4",
+                    "#4C86FF",
+                    "#7EF29D",
+                    "#FFAA71",
+                    "#E05DBA",
+                    "#51C5A8",
+                    "#FFA3C4",
+                    "#C8BCFF"
+                ]
             }
         }
         self.currentThemeKey = "light"
+        self.currentRowIndex: Optional[int] = 0
 
         self.chartView = PYChartView()
-        testChartModel = AAOptionsProComposer.sankeyChart()
-        self.chartView.aa_drawChartWithChartOptions(testChartModel)
 
 
 
@@ -186,6 +227,10 @@ class MainTreeWidget(QtWidgets.QWidget):
         self.folderTree.itemSelectionChanged.connect(self.handleTreeSelectionChanged)
         self.folderTree.expandAll()
 
+        firstSection = self.folderTree.topLevelItem(0)
+        if firstSection and firstSection.childCount() > 0:
+            self.folderTree.setCurrentItem(firstSection.child(0))
+
         listContainer = QtWidgets.QFrame()
         self.listContainer = listContainer
 
@@ -237,9 +282,10 @@ class MainTreeWidget(QtWidgets.QWidget):
         if rowIndex is None:
             return
 
-        aaOptions = self.chartConfigurationWithSelectedIndex(rowIndex)
+    self.currentRowIndex = int(rowIndex)
+    aaOptions = self.chartConfigurationWithSelectedIndex(self.currentRowIndex)
         if aaOptions is not None:
-            self.chartView.aa_drawChartWithChartOptions(aaOptions)
+            self.renderChartWithTheme(aaOptions)
 
     def filterTreeItems(self, keyword: str):
         keyword = keyword.strip().lower()
@@ -407,7 +453,112 @@ class MainTreeWidget(QtWidgets.QWidget):
             self.themeSelector.setCurrentIndex(indexToSelect)
         self.themeSelector.blockSignals(False)
 
+        self.refreshCurrentChartTheme()
         self.update()
+
+
+    def renderChartWithTheme(self, aaOptions: Optional[AAOptions]):
+        if aaOptions is None:
+            return
+
+        themedOptions = self.applyThemeToAAOptions(aaOptions)
+        self.chartView.aa_drawChartWithChartOptions(themedOptions)
+
+    def refreshCurrentChartTheme(self):
+        if self.currentRowIndex is None:
+            return
+
+        aaOptions = self.chartConfigurationWithSelectedIndex(self.currentRowIndex)
+        if aaOptions is not None:
+            self.renderChartWithTheme(aaOptions)
+
+    def applyThemeToAAOptions(self, options: AAOptions) -> AAOptions:
+        theme = self.themes.get(self.currentThemeKey, self.themes["light"])
+
+        if getattr(options, "chart", None) is None:
+            options.chartSet(AAChart())
+        options.chart.backgroundColorSet(theme["chart_bg"])
+
+        self._ensure_text_style(getattr(options, "title", None), theme["text_primary"])
+        self._ensure_text_style(getattr(options, "subtitle", None), theme["text_secondary"])
+
+        tooltip = getattr(options, "tooltip", None)
+        if tooltip is None:
+            tooltip = AATooltip()
+            options.tooltipSet(tooltip)
+        tooltip.backgroundColorSet(theme["tooltip_bg"])
+        tooltip.borderColorSet(theme["tooltip_border"])
+        tooltip.borderRadiusSet(8)
+        tooltip.paddingSet(12)
+        self._ensure_text_style(tooltip, theme["tooltip_text"], style_attr="style")
+
+        legend = getattr(options, "legend", None)
+        if legend is not None:
+            itemStyle = getattr(legend, "itemStyle", None)
+            if itemStyle is None:
+                itemStyle = AAItemStyle()
+            itemStyle.colorSet(theme["legend_text"])
+            legend.itemStyleSet(itemStyle)
+            if hasattr(legend, "borderColorSet"):
+                legend.borderColorSet("transparent")
+
+        axis_candidates = []
+        for axis_attr in ("xAxis", "yAxis"):
+            axis_obj = getattr(options, axis_attr, None)
+            if axis_obj is not None:
+                axis_candidates.append(axis_obj)
+        for axis_attr in ("xAxisArray", "yAxisArray"):
+            axis_array = getattr(options, axis_attr, None)
+            if axis_array:
+                axis_candidates.extend(axis_array)
+
+        for axis in axis_candidates:
+            self._style_axis(axis, theme)
+
+        if not getattr(options, "colors", None):
+            palette = theme.get("series_palette")
+            if palette:
+                options.colorsSet(palette)
+
+        return options
+
+    def _ensure_text_style(self, owner, color: str, style_attr: str = "style"):
+        if owner is None:
+            return
+
+        style = getattr(owner, style_attr, None)
+        if style is None:
+            style = AAStyle()
+
+        style.colorSet(color)
+
+        setter_name = f"{style_attr}Set"
+        setter = getattr(owner, setter_name, None)
+        if callable(setter):
+            setter(style)
+
+    def _style_axis(self, axis, theme: dict):
+        if axis is None:
+            return
+
+        if hasattr(axis, "lineColorSet") and theme.get("axis_line"):
+            axis.lineColorSet(theme["axis_line"])
+        if hasattr(axis, "tickColorSet") and theme.get("axis_tick"):
+            axis.tickColorSet(theme["axis_tick"])
+        if hasattr(axis, "gridLineColorSet") and theme.get("axis_grid"):
+            axis.gridLineColorSet(theme["axis_grid"])
+        if hasattr(axis, "minorGridLineColorSet") and theme.get("axis_grid"):
+            axis.minorGridLineColorSet(theme["axis_grid"])
+
+        labels = getattr(axis, "labels", None)
+        if labels is None:
+            labels = AALabels()
+            axis.labelsSet(labels)
+        self._ensure_text_style(labels, theme["axis_labels"])
+
+        title = getattr(axis, "title", None)
+        if title is not None and getattr(title, "text", None):
+            self._ensure_text_style(title, theme["text_primary"])
 
 
     # https://www.highcharts.com/demo
